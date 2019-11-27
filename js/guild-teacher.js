@@ -16,7 +16,7 @@ quiz_ref.once("value", function(snapshot){
             childsnapshot.forEach(function(childe){
                 // console.log(childe.key)
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "quiz" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "view-mission", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -49,7 +49,7 @@ lab_ref.once("value", function(snapshot){
             let container = document.getElementById("labs");
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "lab" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "lab-view", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -81,7 +81,7 @@ exam_ref.once("value", function(snapshot){
             let container = document.getElementById("exams");
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "exam" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "exam-view", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -119,9 +119,9 @@ function showAct(act_id, container_id, subtopics, date, act_name){
         x.appendChild(subs) 
     });
     var input = document.createElement("button");
-    input.setAttribute("class", "reg-input class=custom-btn btn btn-secondary");
+    input.setAttribute("class", "reg-input custom-btn btn btn-secondary");
     var record = document.createElement("button")
-    record.setAttribute("class", "reg-input class=custom-btn btn btn-info");
+    record.setAttribute("class", "reg-input custom-btn btn btn-info");
     input.innerHTML = "Input XP";
     input.addEventListener("click",function(){
         if(container_id == "view-mission"){

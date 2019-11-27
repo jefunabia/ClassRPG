@@ -12,42 +12,30 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">ClassRPG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(48, 48, 48, 0.7), rgba(32, 32, 32, 0.7)),
+                url("../assets/tos.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!---Nav Bar-->
+    <img src="../assets/title.png" width="30%" height="100%">
+    <a href="home-teacher.html"> <img src="../assets/home-btn.png" width="20%" height="20%"> </a>
+    <a href="profile.html"> <img src="../assets/profile-btn.png" width="20%" height="20%"> </a>
+    <a href="../index.html"> <img src="../assets/sign-out.png" width="20%" height="20%"> </a>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home-teacher.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Sign Out</a>
-                </li>
 
-            </ul>
-        </div>
-    </nav>
 <div class="container-fluid">
-    <h2 id="subject-code"> Guild Mission (Subject Code)</h2>
-    <h3>Guild Activity Name</h3>
-    <h4>Total XP: XP</h4>
-
+    <h2 class="center yellow" id="subject-code"> Guild Mission</h2>
+    <hr>
+    <div class="input-xp-form">
     <div id="selector">
-          Select Participant: 
-      <!-- <select id="participant-list">
-          <option>Participant 1</option>
-          <option>Participant 2</option>
-          <option>Participant 3</option>
-          <option>Participant 4</option>
-      </select> <br><br> -->
-        <select id="participant-list">
+          <h2>Select Participant:</h2> 
+        <select class="form-control" id="participant-list">
             <option id="def" value="" selected>none</option>
         </select>
     </div><br>
@@ -59,8 +47,8 @@
       NOTHING YET
     </div><br>
     
-    <div id="total">Total Gained XP: </div><br> <br>
-      
+    <div id="total"></div><br> <br>
+</div>
   </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>

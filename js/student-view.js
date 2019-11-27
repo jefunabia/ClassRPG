@@ -18,7 +18,7 @@ quiz_ref.once("value", function(snapshot){
             container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "quiz" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "view-mission",  childe.child("date").val(),childe.child("name").val());
@@ -38,7 +38,7 @@ lab_ref.once("value", function(snapshot){
             container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "lab" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "lab-view",childe.child("date").val(),childe.child("name").val());
@@ -58,7 +58,7 @@ exam_ref.once("value", function(snapshot){
             container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
-                b.setAttribute("class", "class=custom-btn btn btn-secondary");
+                b.setAttribute("class", "custom-btn btn btn-secondary");
                 b.innerHTML = "exam" + count;
                 b.addEventListener("click", function(){
                   

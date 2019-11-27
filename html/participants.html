@@ -13,35 +13,30 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">ClassRPG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(48, 48, 48, 0.7), rgba(32, 32, 32, 0.7)),
+                url("../assets/tos.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!---Nav Bar-->
+    <img src="../assets/title.png" width="30%" height="100%">
+    <a href="home-teacher.html"> <img src="../assets/home-btn.png" width="20%" height="20%"> </a>
+    <a href="profile.html"> <img src="../assets/profile-btn.png" width="20%" height="20%"> </a>
+    <a href="../index.html"> <img src="../assets/sign-out.png" width="20%" height="20%"> </a>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home-teacher.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Sign Out</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
 
     <div class="container-fluid">
-        <h2 id="subject-code">Guild Mission (Subject Code) </h2>
-        <h3>Enrolled Participants</h3>
+        <h2 class= "yellow center" id="subject-code">Guild Mission (Subject Code) </h2>
+        <hr>
+        <h2>Enrolled Participants</h2>
         <div>
-            <table id="user-table">
-                <tr>
+            <table id="user-table" class="table table-hover">
+                <tr scope="row">
                     <th>Participants</th>
                     <th>Guild</th>
                     <th>Level</th>
@@ -49,38 +44,6 @@
                 </tr>
             </table>
         </div>
-        <!-- <table>
-        <tr>
-            <th>Participants</th>
-            <th>Guild</th>
-            <th>Level</th>
-            <th>Current XP</th>
-        </tr>
-        <tr>
-            <th>Alosbaños, Eef Sabine</th>
-            <th>Computer Science</th>
-            <th>2</th>
-            <th>90</th>
-        </tr>
-        <tr>
-            <th>Balite, Jun Neil Dionne</th>
-            <th>Computer Science</th>
-            <th>2</th>
-            <th>100</th>
-        </tr>
-        <tr>
-            <th>Unabia, Janelle Elaiza</th>
-            <th>Computer Science</th>
-            <th>2</th>
-            <th>110</th>
-        </tr>
-        <tr>
-            <th>Uy, Jhessa Mae</th>
-            <th>Computer Science</th>
-            <th>2</th>
-            <th>120</th>
-        </tr>
-    </table><br><br> -->
     </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>

@@ -1,6 +1,6 @@
 let start = location.href.lastIndexOf("/");
 let subject_key = location.href.substr(start+1);
-document.getElementById("subject-code").innerHTML = "Guild Mission " + subject_key;
+document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + subject_key;
 
 //TYPE: QUIZ / LAB / EXAM
 let t_index = location.href.indexOf("=");
