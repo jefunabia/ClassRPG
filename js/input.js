@@ -117,28 +117,68 @@ function submit(){
         let sub_input = document.getElementById(sub_id).value;
         // quiz_ref.child(subject_key).child(act_id).child("SubTopics").child(sub_id).set({
         //     xp : sub_input
-        // });
-        subnames.push({id: sub_id, xp: sub_input});
+        // }); 
+        let sub_id2 = sub_id.replace(/\s+/g, " ");
+        quiz_ref.once("value", function(childsnapshot){
+            childsnapshot.forEach(function(snapshot){
+                if(snapshot.key == subject_key){
+                    snapshot.forEach(function(childe){
+                        if(childe.key == act_id){
+                            childe.child("SubTopics").forEach(function(c){
+                                if(c.key == sub_id2){
+                                    // alert(c.child("title").val())
+                                    // subnames.push({id: sub_id2, name:c.child("title").val(), xp: sub_input});
+                                    if(mission_type == "quiz"){
+                                        scores_ref.child(participant).child("Quizzes").child(act_id)
+                                        .child("Subtopics").child(sub_id2).update({
+                                            title: c.child("title").val(),
+                                            xp:sub_input
+                                        });
+                                    } else if ( mission_type == "lab"){
+                                        scores_ref.child(participant).child("Labs").child(act_id)
+                                        .child("Subtopics").child(sub_id2).update({
+                                            title: c.child("title").val(),
+                                            xp: sub_input
+                                        });
+                                    } else {
+                                        scores_ref.child(participant).child("Exams").child(act_id)
+                                        .child("Subtopics").child(sub_id2).update({
+                                            title: c.child("title").val(),
+                                            xp: sub_input
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        
     }
-    for(let i = 0; i < subnames.length; i++){
-        if(mission_type == "quiz"){
-            scores_ref.child(participant).child("Quizzes").child(act_id)
-            .child("Subtopics").child(subnames[i].id).update({
-                xp: subnames[i].xp
-            });
-        } else if ( mission_type == "lab"){
-            scores_ref.child(participant).child("Labs").child(act_id)
-            .child("Subtopics").child(subnames[i].id).update({
-                xp: subnames[i].xp
-            });
-        } else {
-            scores_ref.child(participant).child("Exams").child(act_id)
-            .child("Subtopics").child(subnames[i].id).update({
-                xp: subnames[i].xp
-            });
-        }
-    }
+    // for(let i = 0; i < subnames.length; i++){
+    //     alert(subnames[i].name)
+    //     if(mission_type == "quiz"){
+    //         scores_ref.child(participant).child("Quizzes").child(act_id)
+    //         .child("Subtopics").child(subnames[i].id).update({
+    //             title: subnames[i].name,
+    //             xp: subnames[i].xp
+    //         });
+    //     } else if ( mission_type == "lab"){
+    //         scores_ref.child(participant).child("Labs").child(act_id)
+    //         .child("Subtopics").child(subnames[i].id).update({
+    //             title:  subnames[i].name,
+    //             xp: subnames[i].xp
+    //         });
+    //     } else {
+    //         scores_ref.child(participant).child("Exams").child(act_id)
+    //         .child("Subtopics").child(subnames[i].id).update({
+    //             title:  subnames[i].name,
+    //             xp: subnames[i].xp
+    //         });
+    //     }
+    // }
     
-    // console.log(sub_input);
+    // // console.log(sub_input);
     window.alert("XP added successfully!");
 }

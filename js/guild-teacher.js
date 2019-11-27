@@ -1,7 +1,7 @@
 document.getElementById("access-key").style.display = "none";
 let start = location.href.lastIndexOf("/");
-let guild_course = location.href.substr(start + 1).replace("%", " ");
-let guild_key = guild_course.replace(" ", "").toLowerCase() + "id";
+let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
+let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
 
 document.getElementById("course-code").innerHTML = "Guild Mission " + guild_course;
 //-----------------------------DISPLAY SECTION------------------------------------
@@ -191,8 +191,7 @@ function addActivity(){ //must assum that quiz id is randomized
     let date = document.getElementById("date").value;
     let name = document.getElementById("qtitle").value;
     //THIS NEEDS TO BE CHANGED INTO RANDOM
-  
-    let act_key = name.replace(" ", "") + "id";
+    let act_key = name.replace(/\s+/g, "")  + "id";
     console.log(name)
 
     if(name !== "" && subs_list.length > 0){
@@ -203,8 +202,11 @@ function addActivity(){ //must assum that quiz id is randomized
                 date: date,
                 name: name
             });
+            
             for(let i = 0; i < subs_list.length;i++){
-                quiz_ref.child(guild_key).child(act_key).child("SubTopics").child(subs_list[i].topic).update({
+                let sub_id = subs_list[i].topic.replace(/\s+/g, "").toLowerCase() + "id";
+                quiz_ref.child(guild_key).child(act_key).child("SubTopics").child(sub_id).update({
+                    title: subs_list[i].topic,
                     xp:subs_list[i].xp
                 });
             }
@@ -215,6 +217,7 @@ function addActivity(){ //must assum that quiz id is randomized
             })
             for(let i = 0; i < subs_list.length;i++){
                 lab_ref.child(guild_key).child(act_key).child("SubTopics").child(subs_list[i].topic).update({
+                    title: subs_list[i].topic,
                     xp:subs_list[i].xp
                 });
             }
@@ -224,7 +227,9 @@ function addActivity(){ //must assum that quiz id is randomized
                 name: name
             })
             for(let i = 0; i < subs_list.length;i++){
-                exam_ref.child(guild_key).child(act_key).child("SubTopics").child(subs_list[i].topic).update({
+                let sub_id = subs_list[i].topic.replace(/\s+/g, "").toLowerCase() + "id";
+                exam_ref.child(guild_key).child(act_key).child("SubTopics").child(sub_id).update({
+                    title: subs_list[i].topic,
                     xp:subs_list[i].xp
                 });
             }
@@ -239,7 +244,8 @@ function addActivity(){ //must assum that quiz id is randomized
     
     
 }
-
+//TO FIX
+//note TOTAL of Subtopics cannot be 0
 let subs_list = new Array();
 function addSubs(){
     

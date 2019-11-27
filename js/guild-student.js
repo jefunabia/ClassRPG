@@ -43,7 +43,7 @@ function dispSubject(){ //displays enrolled subjects
 
             sub_child.addEventListener("click", function(){
                 alert("redirecting")
-                window.location.href = "./guild-mission.html" + "?/" + sub_name.replace(" ","%");
+                window.location.href = "./guild-mission.html" + "?/" + sub_name.replace(/\s+/g, "%");
             });
             
             sub_child.innerHTML = "<h4>"+ sub_name +" </h4>";

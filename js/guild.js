@@ -1,7 +1,7 @@
 
 function addSubject(){ //ONLY ADD SUBJECT THAT DOESNT EXIST YET
     let name = document.getElementById("subject").value //get input
-    let new_name = name.replace(" ","").toLowerCase();
+    let new_name = name.replace(/\s+/g, "").toLowerCase();
     if(typeof temp !== "undefined"){ //validation that we wont get an undefined database
         for(let i =0; i < temp.length;i++){
             console.log(temp[i],new_name)
@@ -35,7 +35,7 @@ function dispSubject(){
 
             sub_child.addEventListener("click", function(){
                 alert("redirecting")
-                window.location.href = "./guild-mission-teacher.html" + "?/" + sub_name.replace(" ","%");
+                window.location.href = "./guild-mission-teacher.html" + "?/" + sub_name.replace(/\s+/g, "%")
             });
             
             sub_child.innerHTML = "<h5>"+ sub_name +" </h5>";
