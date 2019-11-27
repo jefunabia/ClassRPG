@@ -3,7 +3,7 @@ let start = location.href.lastIndexOf("/");
 let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
 let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
 
-document.getElementById("course-code").innerHTML = "Guild Mission " + guild_course;
+document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
 //-----------------------------DISPLAY SECTION------------------------------------
 /////////LISTEN to DISPLAY////////////////////////////
 ///////////////////QUIZZES///////////////////////////
@@ -16,6 +16,7 @@ quiz_ref.once("value", function(snapshot){
             childsnapshot.forEach(function(childe){
                 // console.log(childe.key)
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "quiz" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "view-mission", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -33,9 +34,9 @@ quiz_ref.once("value", function(snapshot){
         }
     });
     
-    let total_div = document.createElement("div");
-    total_div.innerHTML = "<br>QUIZ TOTAL: " + q_count;
-    document.body.appendChild(total_div);
+    let total_div = document.getElementById("quiz-total");
+    total_div.innerHTML = "<h5>[QUIZ TOTAL]</h5> " + q_count;
+    //document.body.appendChild(total_div);
 
     average(q_count)
 });
@@ -48,6 +49,7 @@ lab_ref.once("value", function(snapshot){
             let container = document.getElementById("labs");
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "lab" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "lab-view", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -65,9 +67,9 @@ lab_ref.once("value", function(snapshot){
         }
     });
     
-    let total_div = document.createElement("div");
-    total_div.innerHTML = "<br>LAB TOTAL: " + l_count;
-    document.body.appendChild(total_div);
+    let total_div = document.getElementById("lab-total");
+    total_div.innerHTML = "<br><h5>[LAB TOTAL]</h5> " + l_count;
+    //document.body.appendChild(total_div);
     average(l_count)
 });
 ////////////////////////EXAMS////////////////////////////////
@@ -79,6 +81,7 @@ exam_ref.once("value", function(snapshot){
             let container = document.getElementById("exams");
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "exam" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "exam-view", childe.child("SubTopics"), childe.child("date").val(),childe.child("name").val());
@@ -96,27 +99,29 @@ exam_ref.once("value", function(snapshot){
         }
     });
     
-    let total_div = document.createElement("div");
-    total_div.innerHTML = "<br>EXAM TOTAL: " + e_count;
-    document.body.appendChild(total_div);
+    let total_div = document.getElementById("exam-total");
+    total_div.innerHTML = "<br><h5>[EXAM TOTAL]</h5> " + e_count;
+    //document.body.appendChild(total_div);
 
     //DISPLAY OVERALL TOTAL
-    let overall = document.createElement("div");
-    overall.innerHTML ="<br>OVERALL XP: " + average(e_count);
-    document.body.appendChild(overall);
+    let overall = document.getElementById("overall-total");
+    overall.innerHTML ="<h5>" + average(e_count) + "</h5> <br>";
+   // document.body.appendChild(overall);
 });
 //--------------------------------------------------------------------//
 function showAct(act_id, container_id, subtopics, date, act_name){
     var x = document.getElementById(container_id);
-    x.innerHTML = "<br>Name: " +  act_name + "<br>Date: " + date;
+    x.innerHTML = "<br><h3>Name:</h3> " +  act_name + "<br><br><h3>Date:</h3> " + date + "<br><br>";
     var subs = document.createElement("div");
-    subs.innerHTML = "<h4>SubTopics:</h4>";
+    subs.innerHTML = "<h3>Sub-Activity:</h3>";
     subtopics.forEach(function(topic){
-        subs.innerHTML +=  "<br>" + topic.key.toUpperCase() + "<br>XP: " + topic.child("xp").val() + "<br>";
+        subs.innerHTML +=  topic.key.toUpperCase() + "<br><br><h5>XP:</h5> " + topic.child("xp").val() + "<br>";
         x.appendChild(subs) 
     });
     var input = document.createElement("button");
+    input.setAttribute("class", "reg-input class=custom-btn btn btn-secondary");
     var record = document.createElement("button")
+    record.setAttribute("class", "reg-input class=custom-btn btn btn-info");
     input.innerHTML = "Input XP";
     input.addEventListener("click",function(){
         if(container_id == "view-mission"){
@@ -259,7 +264,7 @@ function addSubs(){
         subs.innerHTML = "";
         for(let i = 0; i < subs_list.length;i++){
             let p = document.createElement("p");
-            p.innerHTML = "<br>Topic: " + subs_list[i].topic + "<br>XP: " + subs_list[i].xp;
+            p.innerHTML = "<br><h3>Sub-Activity:</h3> " + subs_list[i].topic + "<br><br> <h3>XP:</h3> " + subs_list[i].xp;
             subs.appendChild(p)
         }
     }

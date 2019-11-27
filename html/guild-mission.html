@@ -12,72 +12,78 @@
 </head>
 
 <body>
-   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">ClassRPG</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="home-student.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile.html">My Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">Sign Out</a>
-            </li>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(48, 48, 48, 0.7), rgba(32, 32, 32, 0.7)),
+                url("../assets/tos.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!---Nav Bar-->
+    <img src="../assets/title.png" width="30%" height="100%">
+    <a href="home-student.html"> <img src="../assets/home-btn.png" width="20%" height="20%"> </a>
+    <a href="profile.html"> <img src="../assets/profile-btn.png" width="20%" height="20%"> </a>
+    <a href="../index.html"> <img src="../assets/sign-out.png" width="20%" height="20%"> </a>
 
-        </ul>
-    </div>
-</nav>
+    <div class="container-fluid">
+        <h2 class="center yellow" id="course-code">Guild Mission:</h2>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h3 id="CXP">Current XP: </h3>
+                <div class="center" id="xp-bar"></div>
+            </div>
+            <div class="col">
+                    <img src="../assets/label-quiz.png">
+                <div id="quiz">
+                    nothing yet..
+                    <!-- <button onclick="viewMission()">Quiz #1</button> -->
+                </div>
+                <div id="view-mission">
+                    Date: <br>
+                    Topic: <br>
+                    Subtopic 1 <input type="text" disabled value="My XP"></input> <br>
+                    Subtopic 2 <input type="text" disabled value="My XP"></input> <br>
+                    Subtopic 3 <input type="text" disabled value="My XP"></input> <br>
 
-    <h2 id="course-code">Guild Mission (Course Code)</h2>
+                    XP Gained: <br>
+                    Topic Total XP: <br> <br>
 
-    <h3 id="CXP">Current XP: </h3>
-    <div id="xp-bar"></div>
-    <div id="quiz">
-        <h4>Quizzes</h4>
-        nothing yet..
-        <!-- <button onclick="viewMission()">Quiz #1</button> -->
-    </div>
-    <div id="view-mission">
-        Date: <br>
-        Topic: <br>
-        Subtopic 1 <input type="text" disabled value="My XP"></input> <br>
-        Subtopic 2 <input type="text" disabled value="My XP"></input> <br>
-        Subtopic 3 <input type="text" disabled value="My XP"></input> <br>
-
-        XP Gained: <br>
-        Topic Total XP: <br> <br>
-
-    </div>
-    <div id="labs">
-        <h4>Lab Activities</h4>
-        nothing yet..
-    </div>
-    <div id="lab-view">
-    </div>
-    <div id="exams">
-        <h4>Exams</h4>
-        nothing yet..
-    </div>
-    <div id="exam-view"></div>
-    <!-- <h4>Lab Activities</h4>
+                </div>
+            </div>
+            <div class="col">
+                <img src="../assets/label-lab-act.png">
+                <div id="labs">
+                    <h4>Lab Activities</h4>
+                </div>
+                <div id="lab-view">
+                    </div>
+            </div>
+            <div class="col">
+                <img src="../assets/label-exams.png">
+                <div id="exams">
+                    <h4>Exams</h4>
+                    nothing yet..
+                </div>
+                <div id="exam-view"></div>
+            </div>
+                <!-- <h4>Lab Activities</h4>
     <h4>Exams</h4> -->
-
+           
+        </div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
 
     <script src="../js/firebase-connect.js"></script>
-    
+
     <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/1.1.0/dist/progressbar.js"></script>
     <script src="../js/progress.js"></script>
-    
+
     <script src="../js/student-view.js"></script>
 
 

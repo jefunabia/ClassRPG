@@ -12,92 +12,148 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">ClassRPG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(48, 48, 48, 0.7), rgba(32, 32, 32, 0.7)),
+                url("../assets/tos.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!---Nav Bar-->
+    <img src="../assets/title.png" width="30%" height="100%">
+    <a href="home-teacher.html"> <img src="../assets/home-btn.png" width="20%" height="20%"> </a>
+    <a href="profile.html"> <img src="../assets/profile-btn.png" width="20%" height="20%"> </a>
+    <a href="../index.html"> <img src="../assets/sign-out.png" width="20%" height="20%"> </a>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home-teacher.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Sign Out</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
     <div class="container-fluid">
-        <h2 id="course-code">Guild Mission (Course Code)</h2>
+        <div class="row">
+            <div class="col">
+                <h2 class="center yellow" id="course-code">Guild Mission:</h2>
 
-        <button onclick="viewAccessKey()" class="btn btn-primary">View Access Key</button>
-        <p id="access-key">12345</p>
+                <div class="center">
+                    <a onclick="viewAccessKey()"> <img src="../assets/view-access-key.png" width="30%" height="20%">
+                    </a>
+                    <p id="access-key">12345</p>
 
-        <button onclick="view_participants()" class="btn btn-primary">See Enrolled Participants</button>
-
-        <br><br><button onclick="expand()" class="btn btn-success">Add Activities</button><br>
-        <div id="add_quiz" style="display:none">
-            <br>
-            Title: <input type="text" id="qtitle"></input><br>
-            Date: <input type="text" id="date"></input><br>
-            Type:
-            <select id="activity_type">
-                <option value="quiz" selected="">Quiz</option>
-                <option value="lab-activity">Lab Activity</option>
-                <option value="exam">Exam</option>
-            </select>
-            <br><br>
-            <lu>
-                Subtopic : <input type="text" placeholder="enter topic name" id="subtopic"></input>
-                Total: <input type="number" id="total_num" value="0"></input>
-                <button onclick="addSubs()">Add</button>
-            </lu>
-            <br><button onclick="addActivity()">Submit</button>
-           
-            <hr>
-            <div class="subs_list" id="subs_container">
-                <div>Added Topics</div><br>
-                none..
+                    <a onclick="view_participants()"> <img src="../assets/view-participants.png" width="30%"
+                            height="20%">
+                    </a>
+                </div>
             </div>
-            <hr>
-        </div> <br>
-        <h3>Guild Activities</h3>
+                <div class="center col">
+                    <h2 class="yellow">Overall XP</h2>
+                    <div id="overall-total"></div>
+                    <div class="total">
+                        <div id="quiz-total"></div>
+                        <div id="lab-total"></div>
+                        <div id="exam-total"></div>
+
+                    </div>
+                </div>
+           
+
+
+           
+        </div>
         <hr>
-        <div id="quiz">
-            <h4>Quizzes</h4>
-            <button onclick="viewMission()">Quiz #1</button>
-        </div>
-        <div id="view-mission">
-            Date: <br>
-            Topic: <br>
-            Subtopic 1 <input type="text" disabled value="XP"></input> <br>
-            Subtopic 2 <input type="text" disabled value="XP"></input> <br>
-            Subtopic 3 <input type="text" disabled value="XP"></input> <br>
+        <div class="row">
+            <div class="col-sm-4">
 
-            Total XP: <br> <br>
+                <h2 class="center">Add Guild Activity</h2>
 
-            <button class="smol btn btn-primary"><a href="input-xp.html">Input XP</a></button> <br> <br>
+                <div id="add_quiz">
+                    <br>
+                    <div class="form-group">
+                    <h3>Title:</h3> 
+                    <input type="text" id="qtitle" class="reg-input form-control"  placeholder="Enter guild activity title">
+                    </div>
 
-            <button class="smol btn btn-primary"><a href="view-records.html">See Records</a></button> <br> <br>
+                    <div class="form-group">
+                    <h3>Date:</h3>
+                    <input type="text" id="date" class="reg-input form-control"  placeholder="Enter date">
+                     </div>
+
+                     <div class="form-group">
+                    <h3>Type:</h3>
+                    <select id="activity_type" class="reg-input form-control">
+                        <option value="quiz" selected="">Quiz</option>
+                        <option value="lab-activity">Lab Activity</option>
+                        <option value="exam">Exam</option>
+                    </select>
+                </div>
+                 
+                    <lu>
+                            <div class="form-group">
+                        <h3>Sub-Activity Name:</h3> 
+                        <input type="text" placeholder="Enter sub-topic name" id="subtopic" class="reg-input form-control"></input>
+                        </div>
+
+                        <div class="form-group">
+                        <h3>Total:</h3> 
+                        <input type="number" id="total_num" value="0" class="reg-input form-control"></input>
+                    </div>
+                    <div class="form-group">
+                        <button class="center reg-input btn btn-secondary" onclick="addSubs()">Add Sub-Activity</button>
+                    </div>
+                    </lu>
+                    <!---
+                    <br><button onclick="addActivity()">Submit</button>
+                        -->
+
+                    <a onclick="addActivity()"> <img src="../assets/submit-btn.png" width="60%"> </a>
+                    <div class="subs_list" id="subs_container">
+                        <div><h2>Added Topics</h2></div><br>
+                        none..
+                    </div>
+       
+                </div> <br>
+            </div>
+
+
+            <br><br>
+            <div class="col">
+                <img src="../assets/label-quiz.png">
+                <div id="quiz">
+
+                    <button onclick="viewMission()">Quiz #1</button>
+                </div>
+
+
+                <div id="view-mission">
+                    Date: <br>
+                    Topic: <br>
+                    Subtopic 1 <input type="text" disabled value="XP"></input> <br>
+                    Subtopic 2 <input type="text" disabled value="XP"></input> <br>
+                    Subtopic 3 <input type="text" disabled value="XP"></input> <br>
+
+                    Total XP: <br> <br>
+
+                    <button class="smol btn btn-primary"><a href="input-xp.html">Input XP</a></button> <br> <br>
+
+                    <button class="smol btn btn-primary"><a href="view-records.html">See Records</a></button> <br> <br>
+                </div>
+            </div>
+
+            <div class="col">
+                <img src="../assets/label-lab-act.png">
+                <div id="labs">
+                </div>
+                <div id="lab-view"></div>
+            </div>
+
+            <div class="col">
+                <img src="../assets/label-exams.png">
+                <div id="exams">
+                </div>
+                <div id="exam-view"></div>
+            </div>
 
         </div>
-        <div id="labs">
-            <h4>Lab Activities</h4>
-        </div>
-        <div id="lab-view"></div>
-        <div id="exams">
-            <h4>Exams</h4>
-        </div>
-        <div id="exam-view"></div>
+
     </div>
-
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
 

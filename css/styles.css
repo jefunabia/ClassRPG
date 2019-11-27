@@ -151,8 +151,21 @@ h1, h2, h3 {
  }
 
  #xp-bar {
-    margin: 20px;
-    width: 200px;
-    height: 200px;
+    width: 50%;
+    height: 50%;
     position: relative;
+}
+
+.labels-btn {
+    background-color: #f4ddc5;
+    font-family: Dalelands Unical;
+    font-size: 20px;
+}
+
+.half {
+    width: 40%;
+}
+
+.custom-btn {
+    width: 20%;
 }

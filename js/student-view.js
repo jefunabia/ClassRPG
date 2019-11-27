@@ -3,7 +3,7 @@ let start = location.href.lastIndexOf("/");
 let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
 let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
 
-document.getElementById("course-code").innerHTML = "Guild Mission " + guild_course;
+document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
 //-----------------------------DISPLAY SECTION------------------------------------
 /////////LISTEN to DISPLAY////////////////////////////
 ///////////////////QUIZZES///////////////////////////
@@ -15,9 +15,10 @@ quiz_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("quiz");
-            container.innerHTML = "<h4>Quizzes</h4>";
+            container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "quiz" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "view-mission",  childe.child("date").val(),childe.child("name").val());
@@ -34,9 +35,10 @@ lab_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("labs");
-            container.innerHTML = "<h4>Lab Activities</h4>";
+            container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "lab" + count;
                 b.addEventListener("click", function(){
                     showAct(childe.key, "lab-view",childe.child("date").val(),childe.child("name").val());
@@ -53,9 +55,10 @@ exam_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("exams");
-            container.innerHTML = "<h4>Exams</h4>";
+            container.innerHTML = " ";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
+                b.setAttribute("class", "class=custom-btn btn btn-secondary");
                 b.innerHTML = "exam" + count;
                 b.addEventListener("click", function(){
                   
