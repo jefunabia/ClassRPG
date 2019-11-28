@@ -9,10 +9,11 @@ exports.validation = function(guild_ref,key){
 
 function validation(key) { // checks if enrollment key exist
     if(typeof temp !== "undefined" ){
+        alert(temp)
         for(let i = 0; i < temp.length;i++){               
             if(temp[i].id == key){
                 alert("added")
-                enrolled_ref.child(user_token).child(key).set({ //add to database
+                enrolled_ref.child(firebase.auth().currentUser.uid.child(key)).set({ //add to database
                     name: temp[i].name.toUpperCase()
                 });
                 location.reload();
