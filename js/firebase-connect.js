@@ -38,7 +38,7 @@ const firebaseConfig = {
                 });
             }
         });
-        show_profile() // ONLY FOR profile.html
+        // show_profile() // ONLY FOR profile.html
     });
     
     
