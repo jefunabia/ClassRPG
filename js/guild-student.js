@@ -12,7 +12,7 @@ function validation(key) { // checks if enrollment key exist
         for(let i = 0; i < subjects.length;i++){               
             if(subjects[i].id == key){
                 alert("added")
-                enrolled_ref.child(firebase.auth().currentUser.uid).set({ //add to database
+                enrolled_ref.child(firebase.auth().currentUser.uid).child(key).set({ //add to database
                     name: subjects[i].name.toUpperCase()
                 });
                 location.reload();
