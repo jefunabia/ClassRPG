@@ -23,14 +23,7 @@
                 if (userType == "Student") {
                   window.location.replace("./html/home-student.html");
                 } else {
-                  // window.location.replace("./html/home-teacher.html");
-                  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-                    // Send token to your backend via HTTPS
-                    console.log(idToken)
-                    window.location.replace("./html/home-teacher.html" +  "?/user=" + idToken.key);
-                  }).catch(function(error) {
-                    // Handle error
-                  });
+                  window.location.replace("./html/home-teacher.html?user=" + firebase.auth().currentUser);
                 }
                 flag = 1;
               }
