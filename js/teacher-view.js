@@ -15,8 +15,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             var userType = childsnapshot.child("UserType").val();
             if (userType == "Student") {
               window.location.replace("../html/home-student.html");
-            } else {
-              window.location.replace("../html/home-teacher.html");
             }
             flag = 1;
           }
