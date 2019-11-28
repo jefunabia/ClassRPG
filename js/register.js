@@ -22,10 +22,10 @@ firebase.auth().onAuthStateChanged(function(user) {
             var userType = childsnapshot.child("UserType").val();
             if (userType == "Student") {
               // window.location.replace("../html/home-student.html" + "?/user=" + user.key);
-              location.href = "../html/home-student.html" + "?/user=" + firebase.auth().currentUser;
+              location.href = "../html/home-student.html";
             } else {
               // window.location.replace("../html/home-teacher.html" +  "?/user=" + user.key);
-              location.href = "../html/home-teacher.html" +  "?/user=" + firebase.auth().currentUser;
+              location.href = "../html/home-teacher.html";
             }
             flag = 1;
           }
