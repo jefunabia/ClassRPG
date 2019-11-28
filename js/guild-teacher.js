@@ -115,7 +115,7 @@ function showAct(act_id, container_id, subtopics, date, act_name){
     var subs = document.createElement("div");
     subs.innerHTML = "<h3>Sub-Activity:</h3>";
     subtopics.forEach(function(topic){
-        subs.innerHTML +=  topic.key.toUpperCase() + "<br><br><h5>XP:</h5> " + topic.child("xp").val() + "<br>";
+        subs.innerHTML +=  topic.child("title").val().toUpperCase() + "<br><br><h5>XP:</h5> " + topic.child("xp").val() + "<br>";
         x.appendChild(subs) 
     });
     var input = document.createElement("button");
