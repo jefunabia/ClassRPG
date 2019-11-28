@@ -25,7 +25,13 @@ firebase.auth().onAuthStateChanged(function(user) {
               location.href = "../html/home-student.html";
             } else {
               // window.location.replace("../html/home-teacher.html" +  "?/user=" + user.key);
-              location.href = "../html/home-teacher.html";
+              firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+                // Send token to your backend via HTTPS
+                window.location.replace("./html/home-teacher.html" +  "?/user=" + idToken.key);
+              }).catch(function(error) {
+                // Handle error
+              });
+
             }
             flag = 1;
           }
