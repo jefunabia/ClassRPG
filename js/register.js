@@ -21,10 +21,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           if (universityID != "") {
             var userType = childsnapshot.child("UserType").val();
             if (userType == "Student") {
-              // window.location.replace("../html/home-student.html" + "?/user=" + user.key);
-              location.href = "../html/home-student.html";
+              window.location.replace("../html/home-student.html");
             } else {
-              window.location.replace("../html/home-teacher.html?/user=" + firebase.auth().currentUser.uid);
+              window.location.replace("../html/home-teacher.html");
             }
             flag = 1;
           }
