@@ -31,7 +31,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-alert("USER: ", firebase.auth().currentUser)
 function logOut() {
   firebase.auth().signOut();
 }
