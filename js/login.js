@@ -21,9 +21,9 @@
               if (universityID != "") {
                 var userType = childsnapshot.child("UserType").val();
                 if (userType == "Student") {
-                  window.location.replace("./html/home-student.html" +  "?/user=" + firebase.auth().currentUser.key);
+                  window.location.replace("./html/home-student.html" +  "?/user=" + firebase.auth().currentUser.getIdToken());
                 } else {
-                  window.location.replace("./html/home-teacher.html" +  "?/user=" + firebase.auth().currentUser.key);
+                  window.location.replace("./html/home-teacher.html" +  "?/user=" + firebase.auth().currentUser.getIdToken());
                 }
                 flag = 1;
               }
