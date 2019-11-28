@@ -62,11 +62,6 @@
 }
 
 
-.register-title {
-    text-align: center;
-    color: #f4c154;
-}
-
 hr {
     background-color: white;
 }
@@ -129,6 +124,7 @@ h1, h2, h3 {
       text-align: center;
       width: 100%;
       padding: 1%;
+      font-size: 22px;
   }
 
   .reg-input {
@@ -173,4 +169,18 @@ h1, h2, h3 {
 .input-xp-form {
     padding-left: 20%;
     padding-right: 20%;
+}
+
+.test {
+   float: bottom;
+}
+
+.in-line {
+    display: inline;
+}
+
+.reg-label {
+    margin-left: 3%;
+    position:relative;
+    top:20px;
 }
