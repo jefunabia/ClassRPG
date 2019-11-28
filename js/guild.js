@@ -1,3 +1,10 @@
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("user",user.key);
+    } else {
+      // No user is signed in.
+    }
+  });
 
 function addSubject(){ //ONLY ADD SUBJECT THAT DOESNT EXIST YET
     let name = document.getElementById("subject").value //get input
