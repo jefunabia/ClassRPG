@@ -1,5 +1,12 @@
 
-
+    firebase.auth().onAuthStateChanged(function(user){
+        if(user){
+            if(prof_info.length > 0){
+                show_profile();
+            }
+        }
+        
+    });
 function show_profile(){
     alert("called")
 
