@@ -47,7 +47,7 @@ const firebaseConfig = {
             temp.push({id:childsnapshot.key, name: childsnapshot.child('course').val()})       
         });
         dispSubject() // ONLY FOR home-teacher
-        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings!! " + prof_info[0].name + "</h1>"; //USED BOTH FOR home-teacher and home-student
+        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
     });
     
     

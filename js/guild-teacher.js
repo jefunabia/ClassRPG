@@ -119,9 +119,9 @@ function showAct(act_id, container_id, subtopics, date, act_name){
         x.appendChild(subs) 
     });
     var input = document.createElement("button");
-    input.setAttribute("class", "reg-input custom-btn btn btn-secondary");
+    input.setAttribute("class", "reg-input custom2-btn btn btn-primary");
     var record = document.createElement("button")
-    record.setAttribute("class", "reg-input custom-btn btn btn-info");
+    record.setAttribute("class", "reg-input custom2-btn btn btn-primary");
     input.innerHTML = "Input XP";
     input.addEventListener("click",function(){
         if(container_id == "view-mission"){
