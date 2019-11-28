@@ -42,23 +42,27 @@ const firebaseConfig = {
     
     
     //returns GUILD database ref for reuse
-    let temp = [];
-    guild_ref.once('value', function(snapshot){    
-        snapshot.forEach(function(childsnapshot){
-            temp.push({id:childsnapshot.key, name: childsnapshot.child('course').val()})       
-        });
-        dispSubject() // ONLY FOR home-teacher
-        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
-    });
-    
     // let temp = [];
-    // teach_subs_ref.once('value', function(snapshot){    
+    // guild_ref.once('value', function(snapshot){    
     //     snapshot.forEach(function(childsnapshot){
     //         temp.push({id:childsnapshot.key, name: childsnapshot.child('course').val()})       
     //     });
     //     dispSubject() // ONLY FOR home-teacher
     //     document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
     // });
+    
+    let temp = [];
+    teach_subs_ref.once('value', function(snapshot){    
+        snapshot.forEach(function(childsnapshot){
+            if(childsnapshot.key == firebase.auth().currentUser.uid){
+                childsnapshot.forEach(function(childe){
+                    temp.push({id:childe.key, name: childe.child('course').val()});
+                });
+            }       
+        });
+        dispSubject() // ONLY FOR home-teacher
+        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
+    });
     
     
     //returns STUDENT ENROLLED SUBJECTS database ref for reuse
