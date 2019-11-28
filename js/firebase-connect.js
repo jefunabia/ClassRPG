@@ -40,6 +40,11 @@ const firebaseConfig = {
         });
         // show_profile() // ONLY FOR profile.html
     });
+    firebase.auth().onAuthStateChanged(function(user){
+        if(prof_info.length > 0){
+            show_profile();
+        }
+    });
     
     
     //returns GUILD database ref for reuse
