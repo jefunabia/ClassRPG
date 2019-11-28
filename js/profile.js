@@ -1,6 +1,7 @@
 
 
 function show_profile(){
+    alert("called")
     let prof_parent = document.getElementsByClassName("prof-container")[0];
     prof_parent.innerHTML = 
     "<br><h2>Name:</h5> " + prof_info[0].name +
