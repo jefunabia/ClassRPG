@@ -21,16 +21,16 @@
               if (universityID != "") {
                 var userType = childsnapshot.child("UserType").val();
                 if (userType == "Student") {
-                  window.location.replace("../html/home-student.html");
+                  window.location.replace("./html/home-student.html");
                 } else {
-                  window.location.replace("../html/home-teacher.html");
+                  window.location.replace("./html/home-teacher.html");
                 }
                 flag = 1;
               }
             }
           });
           if (flag == 0) {
-            window.location.replace("../html/register.html");
+            window.location.replace("./html/register.html");
           }
         });
 

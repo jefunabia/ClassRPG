@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             if (userType == "Student") {
               window.location.replace("./html/home-student.html");
             } else {
-              window.location.replace("./ClassRPG/html/home-teacher.html");
+              window.location.replace("./html/home-teacher.html");
             }
             flag = 1;
           }
