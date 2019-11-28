@@ -1,14 +1,7 @@
 
-    firebase.auth().onAuthStateChanged(function(user){
-        if(user){
-            if(prof_info.length > 0){
-                let c = document.getElementsByClassName("prof-container")[0];
-                show_profile(c);
-            }
-        }
-        
-    });
-
+   
+let c = document.getElementsByClassName("prof-container")[0];
+show_profile(c);
 
 
 function submit() {
