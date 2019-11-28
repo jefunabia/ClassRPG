@@ -4,6 +4,11 @@ let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
 let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
 
 document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
+
+  function logOut() {
+    firebase.auth().signOut();
+  }
+  
 //-----------------------------DISPLAY SECTION------------------------------------
 /////////LISTEN to DISPLAY////////////////////////////
 ///////////////////QUIZZES///////////////////////////

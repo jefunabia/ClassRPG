@@ -1,4 +1,3 @@
-//firebase.auth().signOut();
 var currentUserEmail;
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -23,13 +22,17 @@ firebase.auth().onAuthStateChanged(function(user) {
           }
         }
       });
-      /*if (flag == 0) {
-          window.location.replace("../html/register.html");
-        }*/
+      if (flag == 0) {
+        window.location.replace("../html/register.html");
+      }
     });
     // User is signed in.
   } else {
     //redirect to log in page
-    //window.location.replace("../index.html");
+    window.location.replace("../index.html");
   }
 });
+
+function logOut() {
+  firebase.auth().signOut();
+}
