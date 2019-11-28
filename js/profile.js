@@ -1,14 +1,15 @@
 
-
+alert(prof_info)
 // function show_profile(){
     // alert("called")
-    let prof_parent = document.getElementsByClassName("prof-container")[0];
-    prof_parent.innerHTML = 
-    "<br><h2>Name:</h5> " + prof_info[0].name +
-    "<br><h2>Legion:</h5> " + prof_info[0].course +
-    "<br><h2>Guild:</h5> " + prof_info[0].department +
-    "<br><h2>SAIS ID:</h5> " + prof_info[0].sais +
-    "<br><h2>Email:</h5> " + prof_info[0].email + "<br><br>"
+
+    // let prof_parent = document.getElementsByClassName("prof-container")[0];
+    // prof_parent.innerHTML = 
+    // "<br><h2>Name:</h5> " + prof_info[0].name +
+    // "<br><h2>Legion:</h5> " + prof_info[0].course +
+    // "<br><h2>Guild:</h5> " + prof_info[0].department +
+    // "<br><h2>SAIS ID:</h5> " + prof_info[0].sais +
+    // "<br><h2>Email:</h5> " + prof_info[0].email + "<br><br>"
 
     // console.log(prof_info)
     
