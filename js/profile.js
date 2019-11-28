@@ -4,6 +4,7 @@
 user_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key === firebase.auth().currentUser.uid){
+            alert("ASdada")
             let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
             let prof_parent = document.getElementsByClassName("prof-container")[0];
                 prof_parent.innerHTML = 
