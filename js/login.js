@@ -23,6 +23,7 @@
                 if (userType == "Student") {
                   window.location.replace("./html/home-student.html");
                 } else {
+                  console.log("WENT TO LOG IN")
                   window.location.replace("./html/home-teacher.html?user=" + firebase.auth().currentUser);
                 }
                 flag = 1;

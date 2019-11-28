@@ -24,15 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               // window.location.replace("../html/home-student.html" + "?/user=" + user.key);
               location.href = "../html/home-student.html";
             } else {
-              // window.location.replace("../html/home-teacher.html" +  "?/user=" + user.key);
-              firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-                // Send token to your backend via HTTPS
-                console.log(idToken)
-                window.location.replace("./html/home-teacher.html" +  "?/user=" + idToken.key);
-              }).catch(function(error) {
-                // Handle error
-              });
-
+              window.location.replace("../html/home-teacher.html?/user=" + user.key);
             }
             flag = 1;
           }
