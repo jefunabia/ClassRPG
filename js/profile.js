@@ -1,7 +1,21 @@
 
    
-let c = document.getElementsByClassName("prof-container")[0];
-show_profile(c);
+//returns database ref for reuse
+user_ref.once("value", function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+        if(childsnapshot.key === firebase.auth().currentUser.uid){
+            let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
+            let prof_parent = document.getElementsByClassName("prof-container")[0];
+                prof_parent.innerHTML = 
+                "<br><h2>Name:</h5> " + fullname +
+                "<br><h2>Legion:</h5> " +childsnapshot.child("Course").val() +
+                "<br><h2>Guild:</h5> " + childsnapshot.child("College").val() +
+                "<br><h2>SAIS ID:</h5> " +childsnapshot.child("UnivID").val() +
+                "<br><h2>Email:</h5> " + childsnapshot.child("Email").val() + "<br><br>"
+    
+        }
+    });
+});
 
 
 function submit() {
