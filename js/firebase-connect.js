@@ -28,6 +28,7 @@ const firebaseConfig = {
     user_ref.once("value", function(snapshot){
         snapshot.forEach(function(childsnapshot){
             if(childsnapshot.key === user_token){
+                alert("asda")
                 prof_info.push({
                     name:childsnapshot.child("fullname").val(),
                     course: childsnapshot.child("course").val(),
