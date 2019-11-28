@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               // window.location.replace("../html/home-teacher.html" +  "?/user=" + user.key);
               firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
                 // Send token to your backend via HTTPS
-                alert(idToken)
+                console.log(idToken)
                 window.location.replace("./html/home-teacher.html" +  "?/user=" + idToken.key);
               }).catch(function(error) {
                 // Handle error
