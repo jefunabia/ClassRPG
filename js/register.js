@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               // window.location.replace("../html/home-student.html" + "?/user=" + user.key);
               location.href = "../html/home-student.html";
             } else {
-              window.location.replace("../html/home-teacher.html?/user=" + user.key);
+              window.location.replace("../html/home-teacher.html?/user=" + firebase.auth().currentUser.uid);
             }
             flag = 1;
           }
@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 var currentUserEmailText = document.getElementById("currentUserEmail1");
-
+//JM :: key should be user id instead of push()
 form.addEventListener("submit", evt => {
   evt.preventDefault();
   user_ref.child(firebase.auth().currentUser.uid).set({
