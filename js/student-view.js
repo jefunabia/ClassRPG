@@ -5,24 +5,6 @@ let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
 
 document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
 
-//returns database ref for reuse
-let prof_info = []
-user_ref.once("value", function(snapshot){
-    snapshot.forEach(function(childsnapshot){
-        if(childsnapshot.key === user_token){
-            alert("asda")
-            prof_info.push({
-                name:childsnapshot.child("fullname").val(),
-                course: childsnapshot.child("course").val(),
-                department:childsnapshot.child("department").val(),
-                sais: childsnapshot.child("sais").val(),
-                email:childsnapshot.child("email").val()
-            });
-        }
-    });
-    show_profile() // ONLY FOR profile.html
-});
-
 function logOut() {
     firebase.auth().signOut();
 }

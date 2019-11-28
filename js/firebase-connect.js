@@ -20,26 +20,26 @@ const firebaseConfig = {
     let enrolled_ref = db.ref("Enrolled_Students");
     let scores_ref = db.ref("Scores");
     let teach_subs_ref = db.ref("Subs_by_teachers")
-    let user_token = firebase.auth.currentUser.uid; //aka the current logged in user
+    let user_token = firebase.auth().currentUser.uid; //aka the current logged in user
  
     
     //returns database ref for reuse
-    // let prof_info = []
-    // user_ref.once("value", function(snapshot){
-    //     snapshot.forEach(function(childsnapshot){
-    //         if(childsnapshot.key === user_token){
-    //             alert("asda")
-    //             prof_info.push({
-    //                 name:childsnapshot.child("fullname").val(),
-    //                 course: childsnapshot.child("course").val(),
-    //                 department:childsnapshot.child("department").val(),
-    //                 sais: childsnapshot.child("sais").val(),
-    //                 email:childsnapshot.child("email").val()
-    //             });
-    //         }
-    //     });
-    //     show_profile() // ONLY FOR profile.html
-    // });
+    let prof_info = []
+    user_ref.once("value", function(snapshot){
+        snapshot.forEach(function(childsnapshot){
+            if(childsnapshot.key === user_token){
+                alert("asda")
+                prof_info.push({
+                    name:childsnapshot.child("fullname").val(),
+                    course: childsnapshot.child("course").val(),
+                    department:childsnapshot.child("department").val(),
+                    sais: childsnapshot.child("sais").val(),
+                    email:childsnapshot.child("email").val()
+                });
+            }
+        });
+        show_profile() // ONLY FOR profile.html
+    });
     
     
     //returns GUILD database ref for reuse
