@@ -28,13 +28,13 @@ const firebaseConfig = {
     user_ref.once("value", function(snapshot){
         snapshot.forEach(function(childsnapshot){
             if(childsnapshot.key === firebase.auth().currentUser.uid){
-                alert(childsnapshot.key.child("fullname").val())
+                let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
                 prof_info.push({
-                    name:childsnapshot.child("fullname").val(),
-                    course: childsnapshot.child("course").val(),
-                    department:childsnapshot.child("department").val(),
-                    sais: childsnapshot.child("sais").val(),
-                    email:childsnapshot.child("email").val()
+                    name: fullname,
+                    course: childsnapshot.child("Course").val(),
+                    department:childsnapshot.child("College").val(),
+                    sais: childsnapshot.child("UnivID").val(),
+                    email:childsnapshot.child("Email").val()
                 });
             }
         });
