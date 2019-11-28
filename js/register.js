@@ -45,7 +45,7 @@ var currentUserEmailText = document.getElementById("currentUserEmail1");
 
 form.addEventListener("submit", evt => {
   evt.preventDefault();
-  user_ref.push().set({
+  user_ref.child(firebase.auth().currentUser.uid).set({
     FirstName: form.firstName.value,
     LastName: form.lastName.value,
     DisplayName: form.displayName.value,
