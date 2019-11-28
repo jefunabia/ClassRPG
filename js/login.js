@@ -30,7 +30,7 @@
             }
           });
           if (flag == 0) {
-            window.location.replace("./ClassRPG/html/register.html");
+            window.location.replace("/html/register.html");
           }
         });
 
