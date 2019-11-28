@@ -10,7 +10,10 @@ function addSubject(){ //ONLY ADD SUBJECT THAT DOESNT EXIST YET
                 return false;
             }
         }
-        guild_ref.child(new_name).set({ //add to database
+        // guild_ref.child(new_name).set({ //add to database
+        //     course: name.toUpperCase()
+        // });
+        teach_subs_ref.child(firebase.auth().currentUser.uid).child(new_name).set({
             course: name.toUpperCase()
         });
         alert("ADDED")

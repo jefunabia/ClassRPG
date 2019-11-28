@@ -19,6 +19,7 @@ const firebaseConfig = {
     let user_ref = db.ref("Users");
     let enrolled_ref = db.ref("Enrolled_Students");
     let scores_ref = db.ref("Scores");
+    let teach_subs_ref = db.ref("Subs_by_teachers")
     let user_token = "id1"; //aka the current logged in user
  
     
@@ -49,6 +50,15 @@ const firebaseConfig = {
         dispSubject() // ONLY FOR home-teacher
         document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
     });
+    
+    // let temp = [];
+    // teach_subs_ref.once('value', function(snapshot){    
+    //     snapshot.forEach(function(childsnapshot){
+    //         temp.push({id:childsnapshot.key, name: childsnapshot.child('course').val()})       
+    //     });
+    //     dispSubject() // ONLY FOR home-teacher
+    //     document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
+    // });
     
     
     //returns STUDENT ENROLLED SUBJECTS database ref for reuse
