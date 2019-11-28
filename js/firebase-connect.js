@@ -72,7 +72,7 @@ const firebaseConfig = {
     let student_load = []
     enrolled_ref.once("value", function(snapshot){
         snapshot.forEach(function(childsnapshot){
-            if(childsnapshot.key === user_token){
+            if(childsnapshot.key === firebase.auth().currentUser.uid){
                 childsnapshot.forEach(function(child){
                     student_load.push({id:child.key, name:child.child("name").val()});
                     

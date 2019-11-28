@@ -46,7 +46,7 @@ function submit() {
 
 
 
-
+//need to fix 
 function updateProfile(name, course, department,sais){
     user_ref.child(user_token).update({
         fullname:name,
