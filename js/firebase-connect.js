@@ -24,22 +24,22 @@ const firebaseConfig = {
  
     
     //returns database ref for reuse
-    // let prof_info = []
-    // user_ref.once("value", function(snapshot){
-    //     snapshot.forEach(function(childsnapshot){
-    //         if(childsnapshot.key === firebase.auth().currentUser.uid){
-    //             let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
-    //             prof_info.push({
-    //                 name: fullname,
-    //                 course: childsnapshot.child("Course").val(),
-    //                 department:childsnapshot.child("College").val(),
-    //                 sais: childsnapshot.child("UnivID").val(),
-    //                 email:childsnapshot.child("Email").val()
-    //             });
-    //         }
-    //     });
-    //     // show_profile() // ONLY FOR profile.html
-    // });
+    let prof_info = []
+    user_ref.once("value", function(snapshot){
+        snapshot.forEach(function(childsnapshot){
+            if(childsnapshot.key === firebase.auth().currentUser.uid){
+                let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
+                prof_info.push({
+                    name: fullname,
+                    course: childsnapshot.child("Course").val(),
+                    department:childsnapshot.child("College").val(),
+                    sais: childsnapshot.child("UnivID").val(),
+                    email:childsnapshot.child("Email").val()
+                });
+            }
+        });
+        show_profile() // ONLY FOR profile.html
+    });
 
     
 
