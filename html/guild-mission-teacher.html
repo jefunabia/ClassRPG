@@ -34,13 +34,12 @@
                 <h2 class="center yellow" id="course-code">Guild Mission:</h2>
 
                 <div class="center">
-                    <a onclick="viewAccessKey()"> <img src="../assets/view-access-key.png" width="30%" height="20%">
-                    </a>
+                        <button class="reg-btn btn btn-primary" onclick="viewAccessKey()"> View Access Key</button>
                     <p id="access-key">12345</p>
 
-                    <a onclick="view_participants()"> <img src="../assets/view-participants.png" width="30%"
-                            height="20%">
-                    </a>
+                    <br> <br>
+                    <button class="reg-btn btn btn-primary" onclick="view_participants()"> View Participants</button>
+
                 </div>
             </div>
                 <div class="center col">
@@ -54,15 +53,12 @@
                     </div>
                 </div>
            
-
-
-           
         </div>
         <hr>
         <div class="row">
             <div class="col-sm-4">
-
-                <h2 class="center">Add Guild Activity</h2>
+                    <img src="../assets/winged-scepter.png" width:="80px" height="80px">
+                <h2 class="reg-label in-line center">Add Guild Activity</h2>
 
                 <div id="add_quiz">
                     <br>
@@ -99,13 +95,13 @@
                         <button class="center reg-input btn btn-secondary" onclick="addSubs()">Add Sub-Activity</button>
                     </div>
                     </lu>
-                    <!---
-                    <br><button onclick="addActivity()">Submit</button>
-                        -->
+                    
+                    <br><button class="reg-btn btn btn-primary" onclick="addActivity()">Submit</button>
+            <br><br>
+            <img src="../assets/book-aura.png" width:="64px" height="64px">
+                        <h2 class="reg-label in-line">Added Sub-Activities</h2><br>
 
-                    <a onclick="addActivity()"> <img src="../assets/submit-btn.png" width="60%"> </a>
                     <div class="subs_list" id="subs_container">
-                        <div><h2>Added Topics</h2></div><br>
                         none..
                     </div>
        
@@ -115,7 +111,11 @@
 
             <br><br>
             <div class="col">
-                <img src="../assets/label-quiz.png">
+                
+                    <img src="../assets/checked-shield.png" width:="64px" height="64px">
+                    <h2 class="reg-label in-line">Quizzes</h2>
+                    <br> <br>
+
                 <div id="quiz">
 
                     <button onclick="viewMission()">Quiz #1</button>
@@ -138,14 +138,18 @@
             </div>
 
             <div class="col">
-                <img src="../assets/label-lab-act.png">
+                                    <img src="../assets/halberd-shuriken.png" width:="64px" height="64px">
+                    <h2 class="reg-label in-line">Lab Activities</h2>
+                    <br><br>
                 <div id="labs">
                 </div>
                 <div id="lab-view"></div>
             </div>
 
             <div class="col">
-                <img src="../assets/label-exams.png">
+                    <img src="../assets/lunar-wand.png" width:="64px" height="64px">
+                    <h2 class="reg-label in-line">Exams</h2>
+                    <br><br>
                 <div id="exams">
                 </div>
                 <div id="exam-view"></div>
