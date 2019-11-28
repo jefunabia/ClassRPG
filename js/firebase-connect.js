@@ -19,8 +19,8 @@ const firebaseConfig = {
     let user_ref = db.ref("Users");
     let enrolled_ref = db.ref("Enrolled_Students");
     let scores_ref = db.ref("Scores");
-    let user_token = "id1" //aka the current logged in user
-    
+    let user_token = firebase.auth().currentUser; //aka the current logged in user
+    console.log("user",user_token);
     
     //returns database ref for reuse
     let prof_info = []
