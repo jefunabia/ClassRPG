@@ -25,6 +25,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               location.href = "../html/home-student.html" + "?/user=" + user.key;
             } else {
               // window.location.replace("../html/home-teacher.html" +  "?/user=" + user.key);
+              alert(user.key)
               location.href = "../html/home-teacher.html" +  "?/user=" + user.key;
             }
             flag = 1;
