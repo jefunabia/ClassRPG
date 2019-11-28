@@ -21,16 +21,9 @@
               if (universityID != "") {
                 var userType = childsnapshot.child("UserType").val();
                 if (userType == "Student") {
-                  window.location.replace("./html/home-student.html" +  "?/user=" + firebase.auth().currentUser.getIdToken());
+                  window.location.replace("./html/home-student.html");
                 } else {
-                  // window.location.replace("./html/home-teacher.html" +  "?/user=" + firebase.auth().currentUser.getIdToken());
-                  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-                    // Send token to your backend via HTTPS
-                    window.location.replace("./html/home-teacher.html" +  "?/user=" + idToken.key);
-                  }).catch(function(error) {
-                    // Handle error
-                  });
-                  
+                  window.location.replace("./html/home-teacher.html");
                 }
                 flag = 1;
               }
