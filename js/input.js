@@ -18,7 +18,7 @@ console.log(act_id)
 enrolled_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         childsnapshot.forEach(function(childe){
-            if(childe.key + "id" == subject_key){
+            if(childe.key  == subject_key){
                 add_user_to_list(childsnapshot.key);
             }
         });
