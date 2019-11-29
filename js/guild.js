@@ -1,7 +1,7 @@
 
 function addSubject(){ //ONLY ADD SUBJECT THAT DOESNT EXIST YET
     let name = document.getElementById("subject").value //get input
-    let new_name = name.replace(/\s+/g, "").toLowerCase();
+    let new_name = name.replace(/\s+/g, "").toLowerCase() + "id";
     if(typeof temp !== "undefined"){ //validation that we wont get an undefined database
         for(let i =0; i < temp.length;i++){
             console.log(temp[i],new_name)
