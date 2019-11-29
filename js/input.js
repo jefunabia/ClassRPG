@@ -91,7 +91,7 @@ exam_ref.once("value", function(snapshot){
                 if(childe.key == act_id){
                     let topics = document.createElement("input");
                     childe.child("SubTopics").forEach(function(childes){
-                        sub_parent.innerHTML +=  childes.key + "  ";
+                        sub_parent.innerHTML +=  childes.child("title").val() + "  ";
                         topics.id = childes.key;
                         sub_parent.appendChild(topics);
                         sub_parent.innerHTML += "<br>"
