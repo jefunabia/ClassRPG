@@ -20,7 +20,7 @@ const firebaseConfig = {
     let enrolled_ref = db.ref("Enrolled_Students");
     let scores_ref = db.ref("Scores");
     let teach_subs_ref = db.ref("Subs_by_teachers")
-    let user_token = "id1"; //aka the current logged in user
+    // let user_token = "id1"; //aka the current logged in user
  
     
     //returns database ref for reuse
@@ -34,7 +34,8 @@ const firebaseConfig = {
                     course: childsnapshot.child("Course").val(),
                     department:childsnapshot.child("College").val(),
                     sais: childsnapshot.child("UnivID").val(),
-                    email:childsnapshot.child("Email").val()
+                    email:childsnapshot.child("Email").val(),
+                    dispname: childsnapshot.child("DisplayName").val()
                 });
             }
         });
@@ -68,7 +69,7 @@ const firebaseConfig = {
             });       
         });
         dispSubject() // ONLY FOR home-teacher
-        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].name + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
+        document.getElementsByClassName("header")[0].innerHTML = "<h1>Greetings, " + prof_info[0].dispname + " !!</h1>"; //USED BOTH FOR home-teacher and home-student
     });
     
     

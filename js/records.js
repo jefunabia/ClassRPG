@@ -1,6 +1,5 @@
 let start = location.href.lastIndexOf("/");
 let subject_key = location.href.substr(start+1);
-document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + subject_key;
 
 //TYPE: QUIZ / LAB / EXAM
 let t_index = location.href.indexOf("=");
@@ -12,13 +11,36 @@ let p_cont = document.getElementById("selector");
 let id_index = location.href.indexOf("id=");
 let id_type = location.href.substr(id_index + 3);
 let act_id = id_type.substr(0, id_type.indexOf("?"))
-console.log(act_id)
 
-
+if(mission_type == "lab"){
+    lab_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+} else if (mission_type == "quiz"){
+    quiz_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+} else {
+    exam_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+}
 enrolled_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         childsnapshot.forEach(function(childe){
-            if(childe.key + "id" == subject_key){
+            if(childe.key == subject_key){
                 add_user_to_list(childsnapshot.key);
             }
         });
@@ -32,7 +54,8 @@ enrolled_ref.once("value", function(snapshot){
                 let opt = document.createElement("option");
                 if(childsnapshot.key == participant_list[i]){
                     opt.value = participant_list[i];
-                    opt.text = participant_list[i];
+                    let fullname = childsnapshot.child("FirstName").val() + " " + childsnapshot.child("LastName").val();
+                    opt.text = fullname;
                     selector.appendChild(opt);
                 }
                

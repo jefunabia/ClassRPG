@@ -1,6 +1,6 @@
+// import { type } from "os";
 
 function show_profile(){
-    alert("called")
     let prof_parent = document.getElementsByClassName("prof-container")[0];
     prof_parent.innerHTML = 
     "<br><h2>Name:</h5> " + prof_info[0].name +
@@ -31,32 +31,31 @@ function show_profile(){
 //         }
 //     });
 // });
-
-
-function submit() {
-    let name = document.getElementById("fname").value;
-    let course = document.getElementById("guild").value;
-    let department = document.getElementById("legion").value;
-    let sais = document.getElementById("sais").value;
-
-    updateProfile(name, course, department,sais)
-    window.alert("Form Submitted!");
-    location.reload()
-}
-
-
-
-//need to fix 
-function updateProfile(name, course, department,sais){
-    user_ref.child(user_token).update({
-        fullname:name,
-        course: course,
-        department:department,
-        sais:sais,
-    }).then(()=>{
-        alert("done")
+let form = document.querySelector("#profile-sub")
+form.addEventListener("submit", evt => {
+    evt.preventDefault();
+    let legion = form.legion.value
+    let guild = form.guild.value
+    let dname = document.getElementById("dname").value
+    if(legion ==  ""){
+        legion = prof_info[0].course
+    }
+    if(guild == ""){
+        guild = prof_info[0].department
+    }
+    user_ref.child(firebase.auth().currentUser.uid).update({
+        DisplayName: dname
     });
-}
+    user_ref.child(firebase.auth().currentUser.uid).update({
+        Course: legion
+    });
+    user_ref.child(firebase.auth().currentUser.uid).update({
+        College: guild
+    });
+    location.reload()
+    
+});
+
 document.getElementById("profile-form").style.display = "none";
 
 function editProfile() {

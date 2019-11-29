@@ -14,6 +14,7 @@ quiz_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("quiz");
+            container.innerHTML = "";
             childsnapshot.forEach(function(childe){
                 // console.log(childe.key)
                 let b = document.createElement("button");
@@ -48,6 +49,7 @@ lab_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("labs");
+            container.innerHTML = "";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
                 b.setAttribute("class", "custom-btn btn btn-secondary");
@@ -80,6 +82,7 @@ exam_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         if(childsnapshot.key == guild_key){
             let container = document.getElementById("exams");
+            container.innerHTML = "";
             childsnapshot.forEach(function(childe){
                 let b = document.createElement("button");
                 b.setAttribute("class", "custom-btn btn btn-secondary");

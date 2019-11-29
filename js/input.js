@@ -8,6 +8,7 @@ let i_type = location.href.substr(t_index + 1);
 let mission_type = i_type.substr(0, i_type.indexOf("?"));
 let p_cont = document.getElementById("selector");
 
+
 //ID OF QUIZ / LAB / EXAM
 let id_index = location.href.indexOf("id=");
 let id_type = location.href.substr(id_index + 3);
@@ -27,13 +28,16 @@ enrolled_ref.once("value", function(snapshot){
     
     user_ref.once("value", function(snapshot){
         let selector = document.createElement("select");
-        selector.id = "participant-list";        
+        selector.id = "participant-list";
+        selector.innerHTML = "<option>nothing yet</option>"        
         snapshot.forEach( function(childsnapshot){
             for(let i = 0; i < participant_list.length;i++){
                 let opt = document.createElement("option");
                 if(childsnapshot.key == participant_list[i]){
+                    selector.innerHTML = "";
                     opt.value = participant_list[i];
-                    opt.text = participant_list[i];
+                    let fullname = childsnapshot.child("FirstName").val() + " " +  childsnapshot.child("LastName").val(); 
+                    opt.text = fullname;
                     selector.appendChild(opt);
                 }
                
@@ -113,49 +117,85 @@ function submit(){
     let participant = options[options.selectedIndex].value;
     let subnames = new Array();
     for(let i = 0; i < sub_parent.getElementsByTagName("input").length;i++){
-        let sub_id = sub_parent.getElementsByTagName("input")[i].getAttribute("id");
-        let sub_input = document.getElementById(sub_id).value;
+        let sub_id = sub_parent.getElementsByTagName("input")[i].getAttribute("id").replace(/\s+/g, " ");
+        let sub_input = "";
+        try{
+            sub_input = document.getElementById(sub_id).value;
+        }catch{
+            
+        }finally{
+            if(sub_input.length <= 0){
+                sub_input = "0"
+            }
+            if(mission_type == "quiz"){
+                quiz_ref.once("value", function(snapshot){
+                    snapshot.forEach(function(childsnapshot){
+                        if(childsnapshot.key == subject_key){
+                            childsnapshot.forEach(function(childe){
+                                if(childe.key == act_id){
+                                    childe.child("SubTopics").forEach(function(c){
+                                        if(sub_id == c.key){
+                                            scores_ref.child(participant).child("Quizzes").child(act_id)
+                                            .child("Subtopics").child(sub_id).update({
+                                                title: c.child("title").val(),
+                                                xp:sub_input
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        };
+                    });
+                });
+            } else if (mission_type == "lab"){
+                lab_ref.once("value", function(snapshot){
+                    snapshot.forEach(function(childsnapshot){
+                        if(childsnapshot.key == subject_key){
+                            childsnapshot.forEach(function(childe){
+                                if(childe.key == act_id){
+                                    childe.child("SubTopics").forEach(function(c){
+                                        if(sub_id == c.key){
+                                            scores_ref.child(participant).child("Labs").child(act_id)
+                                            .child("Subtopics").child(sub_id).update({
+                                                title: c.child("title").val(),
+                                                xp:sub_input
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        };
+                    });
+                });
+            } else {
+                exam_ref.once("value", function(snapshot){
+                    snapshot.forEach(function(childsnapshot){
+                        if(childsnapshot.key == subject_key){
+                            childsnapshot.forEach(function(childe){
+                                if(childe.key == act_id){
+                                    childe.child("SubTopics").forEach(function(c){
+                                        if(sub_id == c.key){
+                                            scores_ref.child(participant).child("Exams").child(act_id)
+                                            .child("Subtopics").child(sub_id).update({
+                                                title: c.child("title").val(),
+                                                xp:sub_input
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        };
+                    });
+                });
+            }
+        
+        }
+    }
         // quiz_ref.child(subject_key).child(act_id).child("SubTopics").child(sub_id).set({
         //     xp : sub_input
         // }); 
-        let sub_id2 = sub_id.replace(/\s+/g, " ");
-        quiz_ref.once("value", function(childsnapshot){
-            childsnapshot.forEach(function(snapshot){
-                if(snapshot.key == subject_key){
-                    snapshot.forEach(function(childe){
-                        if(childe.key == act_id){
-                            childe.child("SubTopics").forEach(function(c){
-                                if(c.key == sub_id2){
-                                    // alert(c.child("title").val())
-                                    // subnames.push({id: sub_id2, name:c.child("title").val(), xp: sub_input});
-                                    if(mission_type == "quiz"){
-                                        scores_ref.child(participant).child("Quizzes").child(act_id)
-                                        .child("Subtopics").child(sub_id2).update({
-                                            title: c.child("title").val(),
-                                            xp:sub_input
-                                        });
-                                    } else if ( mission_type == "lab"){
-                                        scores_ref.child(participant).child("Labs").child(act_id)
-                                        .child("Subtopics").child(sub_id2).update({
-                                            title: c.child("title").val(),
-                                            xp: sub_input
-                                        });
-                                    } else {
-                                        scores_ref.child(participant).child("Exams").child(act_id)
-                                        .child("Subtopics").child(sub_id2).update({
-                                            title: c.child("title").val(),
-                                            xp: sub_input
-                                        });
-                                    }
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        });
         
-    }
+   
     // for(let i = 0; i < subnames.length; i++){
     //     alert(subnames[i].name)
     //     if(mission_type == "quiz"){
@@ -181,4 +221,5 @@ function submit(){
     
     // // console.log(sub_input);
     window.alert("XP added successfully!");
+    location.href = "../html/home-teacher.html";
 }

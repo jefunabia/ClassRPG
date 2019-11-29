@@ -1,8 +1,7 @@
 // document.getElementById("access-key").style.display = "none";
 let start = location.href.lastIndexOf("/");
 let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
-let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";
-
+let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";;
 document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
 
 function logOut() {
@@ -78,23 +77,56 @@ exam_ref.once("value", function(snapshot){
 });
 //--------------------------------------------------------------------//
 
-//TO DO NOTES: FIX DATABASE, ADD .NAME ATTRIBUTE TO SUBTOPICS
-
 function showAct(act_id, container_id, date, act_name){
     var x = document.getElementById(container_id);
     x.innerHTML = "<br>Name: " +  act_name + "<br>Date: " + date;
     var subs = document.createElement("div");
     subs.innerHTML = "<h4>SubTopics:</h4>";
+    //###############################SHOWS PROGRESS AT ZERO################
+    quiz_ref.once("value", function(snapshot){
+        snapshot.child(guild_key).child(act_id).child("SubTopics")
+        .forEach(function(topic){
+            let pbar = document.createElement("div");
+            pbar.id = topic.key; 
+            pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
+            x.appendChild(pbar);
+            let total = topic.child("xp").val();
+            bar_line(pbar.id, 0, total);
+        });
+    });
+    lab_ref.once("value", function(snapshot){
+        snapshot.child(guild_key).child(act_id).child("SubTopics")
+        .forEach(function(topic){
+            let pbar = document.createElement("div");
+            pbar.id = topic.key; 
+            pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
+            x.appendChild(pbar);
+            let total = topic.child("xp").val();
+            bar_line(pbar.id, 0, total);
+           
+        });
+    });  
+    exam_ref.once("value", function(snapshot){
+        snapshot.child(guild_key).child(act_id).child("SubTopics")
+        .forEach(function(topic){
+            let pbar = document.createElement("div");
+            pbar.id = topic.key; 
+            pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
+            x.appendChild(pbar);
+            let total = topic.child("xp").val();
+            bar_line(pbar.id, 0, total);
+        });
+    });
+    //#################################SHOWS PROGRESS WITH SCORE###########
     scores_ref.once("value", function(snapshot){
-        // let sub_id = [];
         snapshot.forEach(function(childsnapshot){
-            if(childsnapshot.key == user_token){
+            if(childsnapshot.key == firebase.auth().currentUser.uid){
                 if(container_id == "view-mission"){
                     let check = childsnapshot.child("Quizzes").child(act_id);
                     if(check.hasChildren()){
                         check.child("Subtopics").forEach(function(topic){ 
-                            let pbar = document.createElement("div");
-                            pbar.id = topic.key; 
+                            let pbar = document.getElementById(topic.key);
+                            pbar.innerHTML = "" 
                             pbar.innerHTML += "<br>" + topic.child("title").val() + "<br>"
                             x.appendChild(pbar)
                             
@@ -111,27 +143,14 @@ function showAct(act_id, container_id, date, act_name){
                             });
                             
                         });
-                    } else {
-                        quiz_ref.once("value", function(snapshot){
-                            snapshot.child(guild_key).child(act_id).child("SubTopics")
-                            .forEach(function(topic){
-                                let pbar = document.createElement("div");
-                                pbar.id = topic.key; 
-                                pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
-                                x.appendChild(pbar);
-                                let total = topic.child("xp").val();
-                                bar_line(pbar.id, 0, total);
-                            });
-                        });
-                       
-                    }
+                    } 
                     
                 } else if (container_id == "lab-view"){
                     let check = childsnapshot.child("Labs").child(act_id);
                     if(check.hasChildren()){
                         check.child("Subtopics").forEach(function(topic){ 
-                            let pbar = document.createElement("div");
-                            pbar.id = topic.key; 
+                            let pbar = document.getElementById(topic.key);
+                            pbar.innerHTML = "" 
                             pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
                             x.appendChild(pbar)
                             
@@ -147,26 +166,14 @@ function showAct(act_id, container_id, date, act_name){
                                 });
                             });   
                         });
-                    } else {
-                        lab_ref.once("value", function(snapshot){
-                            snapshot.child(guild_key).child(act_id).child("SubTopics")
-                            .forEach(function(topic){
-                                let pbar = document.createElement("div");
-                                pbar.id = topic.key; 
-                                pbar.innerHTML += "<br>" + topic.child("title").val() + "<br>"
-                                x.appendChild(pbar);
-                                let total = topic.child("xp").val();
-                                bar_line(pbar.id, 0, total);
-                            });
-                        });
-                       
-                    }
+                    }  
+                    
                 } else {
                     let check = childsnapshot.child("Exams").child(act_id);
                     if(check.hasChildren()){
                         check.child("Subtopics").forEach(function(topic){ 
-                            let pbar = document.createElement("div");
-                            pbar.id = topic.key; 
+                            let pbar = document.getElementById(topic.key);
+                            pbar.innerHTML = "" 
                             pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
                             x.appendChild(pbar)
                             
@@ -182,19 +189,6 @@ function showAct(act_id, container_id, date, act_name){
                                 });
                             }); 
                         });
-                    } else {
-                        exam_ref.once("value", function(snapshot){
-                            snapshot.child(guild_key).child(act_id).child("SubTopics")
-                            .forEach(function(topic){
-                                let pbar = document.createElement("div");
-                                pbar.id = topic.key; 
-                                pbar.innerHTML += "<br>" + topic.child("title").val()  + "<br>"
-                                x.appendChild(pbar);
-                                let total = topic.child("xp").val();
-                                bar_line(pbar.id, 0, total);
-                            });
-                        });
-                       
                     }
                 }
                 
@@ -229,7 +223,7 @@ scores_ref.once("value", function(snapshot){
     let xp_cont = document.getElementById("CXP");
     let xp_count = 0;
     snapshot.forEach(function(childsnapshot){
-        if(childsnapshot.key == user_token){
+        if(childsnapshot.key == firebase.auth().currentUser.uid){
             childsnapshot.forEach(function(childe){
                 childe.forEach(function(childes){
                     childes.child("Subtopics").forEach(function(childs){

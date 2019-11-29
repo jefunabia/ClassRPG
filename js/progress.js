@@ -12,16 +12,16 @@ var bar = new ProgressBar.Circle('#xp-bar', {
   text:{
     autoStyleContainer: false,
   },
-  from: { color: '#FFEA82', width: 4 },
-  to: { color: '#FFEA82', width: 4 },
+  from: { color: '#f43605', width: 4 },
+  to: { color: '#f43605', width: 4 },
   // Set default step function for all animate calls
   step: function(state, circle) {
     circle.path.setAttribute('stroke', state.color);
     circle.path.setAttribute('stroke-width', state.width);
 
-    var value = Math.round(circle.value() * 100);
+    var value = Math.round(circle.value() * 1000);
     if (value === 0) {
-      circle.setText('');
+      circle.setText('0/1000');
     } else {
       circle.setText(value + "/1000");
     }
@@ -29,40 +29,40 @@ var bar = new ProgressBar.Circle('#xp-bar', {
   }
 });
 // bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-bar.text.style.fontSize = '2rem';
+
 
 //display percentage (i.e 60%)
 // bar.animate(0.6);  // Number from 0.0 to 1.0 ()
 
 function bar_line(cont, percent,total){
-let container = document.getElementById(cont)
-var bar_line = new ProgressBar.Line(container, {
-  strokeWidth: 4,
-  easing: 'easeInOut',
-  duration: 1400,
-  color: '#FFEA82',
-  trailColor: '#eee',
-  trailWidth: 1,
-  svgStyle: {width: '50%', height: '100%'},
-  text: {
-    style: {
-      color: '#999',
-      right: '0',
-      top: '30px',
-      padding: 0,
-      margin: 0,
-      transform: null
+  let container = document.getElementById(cont)
+  var bar_line = new ProgressBar.Line(container, {
+    strokeWidth: 4,
+    easing: 'easeInOut',
+    duration: 1400,
+    color: '#f43605   ',
+    trailColor: '#eee',
+    trailWidth: 1,
+    svgStyle: {width: '50%', height: '100%'},
+    text: {
+      style: {
+        color: '#999',
+        right: '0',
+        top: '30px',
+        padding: 0,
+        margin: 0,
+        transform: null
+      },
+      autoStyleContainer: false
     },
-    autoStyleContainer: false
-  },
-  from: {color: '#FFEA82'},
-  to: {color: '#ED6A5A'},
-  step: (state, bar) => {
-    // bar.setText(Math.round(bar.value() * 100) + ' %');
-    bar.setText(Math.round(percent * total) + "/ " + total);
-  }
-});
-bar_line.animate(percent);  // Number from 0.0 to 1.0
+    // from: {color: '#f43605'},
+    // to: {color: '#f43605'},
+    step: (state, bar) => {
+      // bar.setText(Math.round(bar.value() * 100) + ' %');
+      bar.setText(Math.round(percent * total) + "/ " + total);
+    }
+  });
+  bar_line.animate(percent);  // Number from 0.0 to 1.0
 }
 
 

@@ -148,9 +148,12 @@ h1, h2, h3 {
 
  #xp-bar {
     width: 50%;
-    height: 50%;
+    /* height: 50%; */
+    height: calc(100vh - 540px);
     position: relative;
+
 }
+
 
 .labels-btn {
     background-color: #f4ddc5;
