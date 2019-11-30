@@ -1,6 +1,6 @@
 let start = location.href.lastIndexOf("/");
 let subject_key = location.href.substr(start+1);
-document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + subject_key;
+
 
 //TYPE: QUIZ / LAB / EXAM
 let t_index = location.href.indexOf("=");
@@ -15,6 +15,32 @@ let id_type = location.href.substr(id_index + 3);
 let act_id = id_type.substr(0, id_type.indexOf("?"))
 console.log(act_id)
 
+//display guild mission name
+if(mission_type == "lab"){
+    lab_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+} else if (mission_type == "quiz"){
+    quiz_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+} else {
+    exam_ref.child(subject_key).once("value", function(snapshot){
+        snapshot.forEach(function(childe){
+            if(childe.key == act_id){  
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + childe.child("name").val();
+            }    
+        });
+    });
+}
 
 enrolled_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
@@ -135,10 +161,21 @@ function submit(){
                                 if(childe.key == act_id){
                                     childe.child("SubTopics").forEach(function(c){
                                         if(sub_id == c.key){
-                                            scores_ref.child(participant).child("Quizzes").child(act_id)
-                                            .child("Subtopics").child(sub_id).update({
-                                                title: c.child("title").val(),
-                                                xp:sub_input
+                                            scores_ref.once("value", function(snapshot){
+                                                snapshot.forEach(function(childsnapshot){    
+                                                    childsnapshot.child("Labs").forEach(function(childe){
+                                                        if(childe.hasChildren() && sub_input !== "0"){
+                                                            scores_ref.child(participant).child("Quizzes").child(act_id)
+                                                            .child("Subtopics").child(sub_id).update({
+                                                                title: c.child("title").val(),
+                                                                xp:sub_input
+                                                            }).then(()=>{
+                                                                window.alert("XP added successfully!");
+                                                                location.href = "../html/home-teacher.html";
+                                                            });
+                                                        }
+                                                    });
+                                                });
                                             });
                                         }
                                     });
@@ -155,10 +192,21 @@ function submit(){
                                 if(childe.key == act_id){
                                     childe.child("SubTopics").forEach(function(c){
                                         if(sub_id == c.key){
-                                            scores_ref.child(participant).child("Labs").child(act_id)
-                                            .child("Subtopics").child(sub_id).update({
-                                                title: c.child("title").val(),
-                                                xp:sub_input
+                                            scores_ref.once("value", function(snapshot){
+                                                snapshot.forEach(function(childsnapshot){    
+                                                    childsnapshot.child("Labs").forEach(function(childe){
+                                                        if(childe.hasChildren() && sub_input !== "0"){
+                                                            scores_ref.child(participant).child("Labs").child(act_id)
+                                                            .child("Subtopics").child(sub_id).update({
+                                                                title: c.child("title").val(),
+                                                                xp:sub_input
+                                                            }).then(()=>{
+                                                                window.alert("XP added successfully!");
+                                                                location.href = "../html/home-teacher.html";
+                                                            });
+                                                        }
+                                                    });
+                                                });
                                             });
                                         }
                                     });
@@ -175,10 +223,21 @@ function submit(){
                                 if(childe.key == act_id){
                                     childe.child("SubTopics").forEach(function(c){
                                         if(sub_id == c.key){
-                                            scores_ref.child(participant).child("Exams").child(act_id)
-                                            .child("Subtopics").child(sub_id).update({
-                                                title: c.child("title").val(),
-                                                xp:sub_input
+                                            scores_ref.once("value", function(snapshot){
+                                                snapshot.forEach(function(childsnapshot){    
+                                                    childsnapshot.child("Labs").forEach(function(childe){
+                                                        if(childe.hasChildren() && sub_input !== "0"){
+                                                            scores_ref.child(participant).child("Exams").child(act_id)
+                                                            .child("Subtopics").child(sub_id).update({
+                                                                title: c.child("title").val(),
+                                                                xp:sub_input
+                                                            }).then(()=>{
+                                                                window.alert("XP added successfully!");
+                                                                location.href = "../html/home-teacher.html";
+                                                            });
+                                                        } 
+                                                    });
+                                                });
                                             });
                                         }
                                     });
@@ -191,35 +250,5 @@ function submit(){
         
         }
     }
-        // quiz_ref.child(subject_key).child(act_id).child("SubTopics").child(sub_id).set({
-        //     xp : sub_input
-        // }); 
-        
-   
-    // for(let i = 0; i < subnames.length; i++){
-    //     alert(subnames[i].name)
-    //     if(mission_type == "quiz"){
-    //         scores_ref.child(participant).child("Quizzes").child(act_id)
-    //         .child("Subtopics").child(subnames[i].id).update({
-    //             title: subnames[i].name,
-    //             xp: subnames[i].xp
-    //         });
-    //     } else if ( mission_type == "lab"){
-    //         scores_ref.child(participant).child("Labs").child(act_id)
-    //         .child("Subtopics").child(subnames[i].id).update({
-    //             title:  subnames[i].name,
-    //             xp: subnames[i].xp
-    //         });
-    //     } else {
-    //         scores_ref.child(participant).child("Exams").child(act_id)
-    //         .child("Subtopics").child(subnames[i].id).update({
-    //             title:  subnames[i].name,
-    //             xp: subnames[i].xp
-    //         });
-    //     }
-    // }
     
-    // // console.log(sub_input);
-    window.alert("XP added successfully!");
-    location.href = "../html/home-teacher.html";
 }

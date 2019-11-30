@@ -12,6 +12,7 @@ let id_index = location.href.indexOf("id=");
 let id_type = location.href.substr(id_index + 3);
 let act_id = id_type.substr(0, id_type.indexOf("?"))
 
+//display guild mission name
 if(mission_type == "lab"){
     lab_ref.child(subject_key).once("value", function(snapshot){
         snapshot.forEach(function(childe){

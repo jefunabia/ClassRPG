@@ -1,8 +1,17 @@
 let start = location.href.lastIndexOf("/");
 let subject_key = location.href.substr(start+1);
-document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + subject_key;
 
 
+teach_subs_ref.once("value", function(snapshot){
+    snapshot.forEach(function(childe){
+        if(childe.key == firebase.auth().currentUser.uid){
+            childe.forEach(function(c){
+                document.getElementById("subject-code").innerHTML = "Guild Mission<br> " + c.child("course").val();
+            });
+            
+        }
+    });
+});
 enrolled_ref.once("value", function(snapshot){
     snapshot.forEach(function(childsnapshot){
         childsnapshot.forEach(function(childe){
