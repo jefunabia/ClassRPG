@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ClassRPG | Input XP</title>
-    <link rel="stylesheet" type="text/css" href="../css/animate.css">
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="../css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+  </head>
 
-<body>
+  <body>
     <style>
-        body {
-            height: 100%;
-            background-image: linear-gradient(to bottom, rgba(48, 48, 48, 0.7), rgba(32, 32, 32, 0.7)),
-                url("../assets/tos.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
+      body {
+        height: 100%;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(48, 48, 48, 0.7),
+            rgba(32, 32, 32, 0.7)
+          ),
+          url("../assets/tos.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+      }
     </style>
     <!---Nav Bar-->
-    <img src="../assets/title.png" width="30%" height="100%">
-    <a href="home-teacher.html"> <img src="../assets/home-btn.png" width="20%" height="20%"> </a>
-    <a href="profile.html"> <img src="../assets/profile-btn.png" width="20%" height="20%"> </a>
-    <a href="../index.html"> <img src="../assets/sign-out.png" width="20%" height="20%"> </a>
-
+    <img src="../assets/title.png" width="30%" height="100%" />
+    <a href="home-teacher.html">
+      <img src="../assets/home-btn.png" width="20%" height="20%" />
+    </a>
+    <a href="profile.html">
+      <img src="../assets/profile-btn.png" width="20%" height="20%" />
+    </a>
+    <a href="../index.html" onclick="logOut()">
+      <img src="../assets/sign-out.png" width="20%" height="20%" />
+    </a>
 
     <div class="container-fluid">
-        <h2 class="yellow center" id="subject-code">Guild Mission</h2>
-        <hr>
-        <h2>Input XP for Participants</h2>
+      <h2 class="yellow center" id="subject-code">Guild Mission</h2>
+      <hr />
+      <h2>Input XP for Participants</h2>
 
-        <div  class="form-group" id="selector">
-            <h3>Select Participant:</h3>
-        </div><br>
+      <div class="form-group" id="selector">
+        <h3>Select Participant:</h3>
+      </div>
+      <br />
 
-        <div class="form-group" id="input-subs">
-        </div><br>
+      <div class="form-group" id="input-subs"></div>
+      <br />
 
-        <button onclick="submit()" class="smol btn btn-primary">Submit</button>
-        <!-- <button><a href="guild-mission-teacher.html">Back</a></button> -->
+      <button onclick="submit()" class="smol btn btn-primary">Submit</button>
+      <!-- <button><a href="guild-mission-teacher.html">Back</a></button> -->
     </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
@@ -51,6 +60,5 @@
     <script src="../js/firebase-connect.js"></script>
     <!-- <script src="js/participants.js"></script> -->
     <script src="../js/input.js"></script>
-</body>
-
+  </body>
 </html>
