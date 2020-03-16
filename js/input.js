@@ -29,49 +29,18 @@ function getGuildMissionRef(missionType){
   return missionRef;
 }
 
- //display guild mission name
+let missionRef = getGuildMissionRef(mission_type);
+// display guild mission name
 function displayGuildMissionName(){
-  missionRef = getGuildMissionRef(mission_type);
   missionRef.child(subject_key).once("value", function(snapshot){
     snapshot.forEach(function(childe) {
-      if (childe.key == ActivityId) {
+      if (childe.key == activityId) {
         document.getElementById("subject-code").innerHTML =
           "Guild Mission<br> " + childe.child("name").val();
       }
     });
   });
 }
-
-// function displayGuildMissionName(){
-//   if (mission_type == "lab") {
-//     lab_ref.child(subject_key).once("value", function(snapshot) {
-//       snapshot.forEach(function(childe) {
-//         if (childe.key == ActivityId) {
-//           document.getElementById("subject-code").innerHTML =
-//             "Guild Mission<br> " + childe.child("name").val();
-//         }
-//       });
-//     });
-//   } else if (mission_type == "quiz") {
-//     quiz_ref.child(subject_key).once("value", function(snapshot) {
-//       snapshot.forEach(function(childe) {
-//         if (childe.key == ActivityId) {
-//           document.getElementById("subject-code").innerHTML =
-//             "Guild Mission<br> " + childe.child("name").val();
-//         }
-//       });
-//     });
-//   } else {
-//     exam_ref.child(subject_key).once("value", function(snapshot) {
-//       snapshot.forEach(function(childe) {
-//         if (childe.key == ActivityId) {
-//           document.getElementById("subject-code").innerHTML =
-//             "Guild Mission<br> " + childe.child("name").val();
-//         }
-//       });
-//     });
-//   }
-// }
 
 displayGuildMissionName();
 
@@ -107,13 +76,14 @@ enrolled_ref.once("value", function(snapshot) {
     p_cont.appendChild(selector);
   });
 });
+
 //display subtopics #repeat for lab and exam
-quiz_ref.once("value", function(snapshot) {
+missionRef.once("value", function(snapshot) {
   let sub_parent = document.getElementById("input-subs");
   snapshot.forEach(function(childsnapshot) {
     if (childsnapshot.key == subject_key) {
       childsnapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
+        if (childe.key == activityId) {
           let topics = document.createElement("input");
           childe.child("SubTopics").forEach(function(childes) {
             sub_parent.innerHTML += childes.key + "  ";
@@ -127,179 +97,68 @@ quiz_ref.once("value", function(snapshot) {
   });
 });
 
-lab_ref.once("value", function(snapshot) {
-  let sub_parent = document.getElementById("input-subs");
-  snapshot.forEach(function(childsnapshot) {
-    if (childsnapshot.key == subject_key) {
-      childsnapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
-          let topics = document.createElement("input");
-          childe.child("SubTopics").forEach(function(childes) {
-            sub_parent.innerHTML += childes.key + "  ";
-            topics.id = childes.key;
-            sub_parent.appendChild(topics);
-            sub_parent.innerHTML += "<br>";
-          });
-        }
-      });
-    }
-  });
-});
-
-exam_ref.once("value", function(snapshot) {
-  let sub_parent = document.getElementById("input-subs");
-  snapshot.forEach(function(childsnapshot) {
-    if (childsnapshot.key == subject_key) {
-      childsnapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
-          let topics = document.createElement("input");
-          childe.child("SubTopics").forEach(function(childes) {
-            sub_parent.innerHTML += childes.child("title").val() + "  ";
-            topics.id = childes.key;
-            sub_parent.appendChild(topics);
-            sub_parent.innerHTML += "<br>";
-          });
-        }
-      });
-    }
-  });
-});
 let participant_list = new Array();
-
 function add_user_to_list(id) {
   participant_list.push(id);
 }
 
-function submit() {
+function getMissionTypeDatabaseName(){
+  if(mission_type.includes("quiz")){
+    return "Quizzes";
+  } else if(missionRef.toString().includes("lab")){
+    return "Labs";
+  } else{
+    return "Exams"
+  }
+}
+function submitActivityScore() {
   let sub_parent = document.getElementById("input-subs");
   let options = document.getElementById("participant-list").options;
   let participant = options[options.selectedIndex].value;
-  let subnames = new Array();
+  let missionType = getMissionTypeDatabaseName();
+  let xp = 0;
   for (let i = 0; i < sub_parent.getElementsByTagName("input").length; i++) {
-    let sub_id = sub_parent
-      .getElementsByTagName("input")
-      [i].getAttribute("id")
-      .replace(/\s+/g, " ");
+    let sub_id = sub_parent.getElementsByTagName("input")[i].getAttribute("id").replace(/\s+/g, " ");
     let sub_input = "";
     try {
       sub_input = document.getElementById(sub_id).value;
     } catch {
+      console.log("something went wrong");
     } finally {
-      if (sub_input.length <= 0) {
-        sub_input = "0";
-      }
-      if (mission_type == "quiz") {
-        quiz_ref.once("value", function(snapshot) {
-          snapshot.forEach(function(childsnapshot) {
-            if (childsnapshot.key == subject_key) {
-              childsnapshot.forEach(function(childe) {
-                if (childe.key == ActivityId) {
-                  childe.child("SubTopics").forEach(function(c) {
-                    if (sub_id == c.key) {
-                      scores_ref.once("value", function(snapshot) {
-                        snapshot.forEach(function(childsnapshot) {
-                          childsnapshot.child("Labs").forEach(function(childe) {
-                            if (childe.hasChildren() && sub_input !== "0") {
-                              scores_ref
-                                .child(participant)
-                                .child("Quizzes")
-                                .child(ActivityId)
-                                .child("Subtopics")
-                                .child(sub_id)
-                                .update({
-                                  title: c.child("title").val(),
-                                  xp: sub_input
-                                })
-                                .then(() => {
-                                  window.alert("XP added successfully!");
-                                  location.href = "../html/home-teacher.html";
-                                });
+      missionRef.once("value", function(snapshot){
+        snapshot.forEach(function(childsnapshot){
+          if(childsnapshot.key == subject_key){
+            childsnapshot.forEach(function(childe){
+              if(childe.key == activityId){
+                childe.child("SubTopics").forEach(function(childes){
+                  if(sub_id == childes.key){
+                    scores_ref.once("value", function(snapshot){
+                      snapshot.forEach(function(childsnapshot) {
+                        childsnapshot.forEach(function(childe) {
+                          if (childe.hasChildren()) {
+                            if(sub_input != ""){
+                              xp = parseInt(sub_input);
+                              scores_ref.child(participant).child(missionType).child(activityId).child("Subtopics").child(sub_id)
+                              .update({
+                                title: childes.child("title").val(),
+                                xp: xp
+                              }).then(() => {
+                                xp = 0
+                                alert("XP added successfully!");
+                                location.href = "../html/home-teacher.html";
+                              });
                             }
-                          });
+                          }
                         });
                       });
-                    }
-                  });
-                }
-              });
-            }
-          });
+                    });
+                  }
+                });
+              }
+            });
+          }
         });
-      } else if (mission_type == "lab") {
-        lab_ref.once("value", function(snapshot) {
-          snapshot.forEach(function(childsnapshot) {
-            if (childsnapshot.key == subject_key) {
-              childsnapshot.forEach(function(childe) {
-                if (childe.key == ActivityId) {
-                  childe.child("SubTopics").forEach(function(c) {
-                    if (sub_id == c.key) {
-                      scores_ref.once("value", function(snapshot) {
-                        snapshot.forEach(function(childsnapshot) {
-                          childsnapshot.child("Labs").forEach(function(childe) {
-                            if (childe.hasChildren() && sub_input !== "0") {
-                              scores_ref
-                                .child(participant)
-                                .child("Labs")
-                                .child(ActivityId)
-                                .child("Subtopics")
-                                .child(sub_id)
-                                .update({
-                                  title: c.child("title").val(),
-                                  xp: sub_input
-                                })
-                                .then(() => {
-                                  window.alert("XP added successfully!");
-                                  location.href = "../html/home-teacher.html";
-                                });
-                            }
-                          });
-                        });
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
-        });
-      } else {
-        exam_ref.once("value", function(snapshot) {
-          snapshot.forEach(function(childsnapshot) {
-            if (childsnapshot.key == subject_key) {
-              childsnapshot.forEach(function(childe) {
-                if (childe.key == ActivityId) {
-                  childe.child("SubTopics").forEach(function(c) {
-                    if (sub_id == c.key) {
-                      scores_ref.once("value", function(snapshot) {
-                        snapshot.forEach(function(childsnapshot) {
-                          childsnapshot.child("Labs").forEach(function(childe) {
-                            if (childe.hasChildren() && sub_input !== "0") {
-                              scores_ref
-                                .child(participant)
-                                .child("Exams")
-                                .child(ActivityId)
-                                .child("Subtopics")
-                                .child(sub_id)
-                                .update({
-                                  title: c.child("title").val(),
-                                  xp: sub_input
-                                })
-                                .then(() => {
-                                  window.alert("XP added successfully!");
-                                  location.href = "../html/home-teacher.html";
-                                });
-                            }
-                          });
-                        });
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
-        });
-      }
+      });
     }
   }
 }
