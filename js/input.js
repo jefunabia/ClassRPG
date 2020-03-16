@@ -32,7 +32,7 @@ function getGuildMissionRef(missionType){
  //display guild mission name
 function displayGuildMissionName(){
   missionRef = getGuildMissionRef(mission_type);
-  mission_type.child(subject_key).once("value", function(snapshot){
+  missionRef.child(subject_key).once("value", function(snapshot){
     snapshot.forEach(function(childe) {
       if (childe.key == ActivityId) {
         document.getElementById("subject-code").innerHTML =
