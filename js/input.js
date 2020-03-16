@@ -8,10 +8,10 @@ let mission_type = i_type.substr(0, i_type.indexOf("?"));
 let p_cont = document.getElementById("selector");
 
 //ID OF QUIZ / LAB / EXAM
-let id_index = location.href.indexOf("id=");
-let id_type = location.href.substr(id_index + 3);
-let act_id = id_type.substr(0, id_type.indexOf("?"));
-console.log(act_id);
+let activityIndexOfId = location.href.indexOf("id=");
+let activityType = location.href.substr(activityIndexOfId + 3);
+let activityId = activityType.substr(0, activityType.indexOf("?"));
+console.log(activityId);
 
 function logOut() {
   firebase.auth().signOut();
