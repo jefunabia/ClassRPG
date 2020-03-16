@@ -1,6 +1,7 @@
+let firebaseApiKey = "AIzaSyDVUGLPKoEQ-cGgwEoC4wrj2w_k65NrXz8";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDVUGLPKoEQ-cGgwEoC4wrj2w_k65NrXz8",
+    apiKey: firebaseApiKey,
     authDomain: "classrpg-b7837.firebaseapp.com",
     databaseURL: "https://classrpg-b7837.firebaseio.com",
     projectId: "classrpg-b7837",
