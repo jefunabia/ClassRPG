@@ -1,1 +1,26 @@
 info: Sample log text here {"label":"[my-label]","timestamp":"2020-03-01 16:13:19"}
+info: Sample log text here {"label":"[my-label]","timestamp":"2020-03-02 23:33:33"}
+info: Sample log text here {"label":"[my-label]","timestamp":"2020-03-03 13:20:39"}
+2020-03-03 13:23:30 info: Sample log text here
+{"message":"Sample log text here","level":"info","label":"[my-label]","timestamp":"2020-03-03 13:25:09"}
+2020-03-03 13:26:10 info: Sample log text here
+2020-03-03 13:30:16 info: Message
+2020-03-03 13:30:16 warn: Warning
+2020-03-03 13:30:51 info: Info Message
+2020-03-03 13:30:51 warn: Warning Message
+2020-03-03 13:30:51 error: Error Message
+2020-03-03 13:48:00 info: Info Message
+2020-03-03 13:48:00 warn: Warning Message
+2020-03-03 13:48:00 error: Error Message
+2020-03-03 13:48:28 info: Info Message
+2020-03-03 13:48:28 warn: Warning Message
+2020-03-03 13:48:28 error: Error Message
+2020-03-03 13:52:47 info: Info Message
+2020-03-03 13:52:47 warn: Warning Message
+2020-03-03 13:52:47 error: Error Message
+2020-03-03 13:55:14 info: Info Message
+2020-03-03 13:55:14 warn: Warning Message
+2020-03-03 13:55:14 error: Error Message
+2020-03-03 13:55:35 info: Info Message
+2020-03-03 13:55:35 warn: Warning Message
+2020-03-03 13:55:35 error: Error Message
