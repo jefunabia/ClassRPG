@@ -17,38 +17,61 @@ function logOut() {
   firebase.auth().signOut();
 }
 
-
-//display guild mission name
-function displayGuildMissionName(){
-  if (mission_type == "lab") {
-    lab_ref.child(subject_key).once("value", function(snapshot) {
-      snapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
-          document.getElementById("subject-code").innerHTML =
-            "Guild Mission<br> " + childe.child("name").val();
-        }
-      });
-    });
-  } else if (mission_type == "quiz") {
-    quiz_ref.child(subject_key).once("value", function(snapshot) {
-      snapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
-          document.getElementById("subject-code").innerHTML =
-            "Guild Mission<br> " + childe.child("name").val();
-        }
-      });
-    });
-  } else {
-    exam_ref.child(subject_key).once("value", function(snapshot) {
-      snapshot.forEach(function(childe) {
-        if (childe.key == ActivityId) {
-          document.getElementById("subject-code").innerHTML =
-            "Guild Mission<br> " + childe.child("name").val();
-        }
-      });
-    });
+function getGuildMissionRef(missionType){
+  let missionRef = "";
+  if(missionType == "lab"){
+    missionRef = lab_ref;
+  } else if(missionType == "quiz"){
+    missionRef = quiz_ref;
+  } else{
+    missionRef = exam_ref;
   }
+  return missionRef;
 }
+
+ //display guild mission name
+function displayGuildMissionName(){
+  missionRef = getGuildMissionRef(mission_type);
+  mission_type.child(subject_key).once("value", function(snapshot){
+    snapshot.forEach(function(childe) {
+      if (childe.key == ActivityId) {
+        document.getElementById("subject-code").innerHTML =
+          "Guild Mission<br> " + childe.child("name").val();
+      }
+    });
+  });
+}
+
+// function displayGuildMissionName(){
+//   if (mission_type == "lab") {
+//     lab_ref.child(subject_key).once("value", function(snapshot) {
+//       snapshot.forEach(function(childe) {
+//         if (childe.key == ActivityId) {
+//           document.getElementById("subject-code").innerHTML =
+//             "Guild Mission<br> " + childe.child("name").val();
+//         }
+//       });
+//     });
+//   } else if (mission_type == "quiz") {
+//     quiz_ref.child(subject_key).once("value", function(snapshot) {
+//       snapshot.forEach(function(childe) {
+//         if (childe.key == ActivityId) {
+//           document.getElementById("subject-code").innerHTML =
+//             "Guild Mission<br> " + childe.child("name").val();
+//         }
+//       });
+//     });
+//   } else {
+//     exam_ref.child(subject_key).once("value", function(snapshot) {
+//       snapshot.forEach(function(childe) {
+//         if (childe.key == ActivityId) {
+//           document.getElementById("subject-code").innerHTML =
+//             "Guild Mission<br> " + childe.child("name").val();
+//         }
+//       });
+//     });
+//   }
+// }
 
 displayGuildMissionName();
 
