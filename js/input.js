@@ -17,36 +17,37 @@ function logOut() {
   firebase.auth().signOut();
 }
 
+
 //display guild mission name
 function displayGuildMissionName(){
-if (mission_type == "lab") {
-  lab_ref.child(subject_key).once("value", function(snapshot) {
-    snapshot.forEach(function(childe) {
-      if (childe.key == act_id) {
-        document.getElementById("subject-code").innerHTML =
-          "Guild Mission<br> " + childe.child("name").val();
-      }
+  if (mission_type == "lab") {
+    lab_ref.child(subject_key).once("value", function(snapshot) {
+      snapshot.forEach(function(childe) {
+        if (childe.key == ActivityId) {
+          document.getElementById("subject-code").innerHTML =
+            "Guild Mission<br> " + childe.child("name").val();
+        }
+      });
     });
-  });
-} else if (mission_type == "quiz") {
-  quiz_ref.child(subject_key).once("value", function(snapshot) {
-    snapshot.forEach(function(childe) {
-      if (childe.key == act_id) {
-        document.getElementById("subject-code").innerHTML =
-          "Guild Mission<br> " + childe.child("name").val();
-      }
+  } else if (mission_type == "quiz") {
+    quiz_ref.child(subject_key).once("value", function(snapshot) {
+      snapshot.forEach(function(childe) {
+        if (childe.key == ActivityId) {
+          document.getElementById("subject-code").innerHTML =
+            "Guild Mission<br> " + childe.child("name").val();
+        }
+      });
     });
-  });
-} else {
-  exam_ref.child(subject_key).once("value", function(snapshot) {
-    snapshot.forEach(function(childe) {
-      if (childe.key == act_id) {
-        document.getElementById("subject-code").innerHTML =
-          "Guild Mission<br> " + childe.child("name").val();
-      }
+  } else {
+    exam_ref.child(subject_key).once("value", function(snapshot) {
+      snapshot.forEach(function(childe) {
+        if (childe.key == ActivityId) {
+          document.getElementById("subject-code").innerHTML =
+            "Guild Mission<br> " + childe.child("name").val();
+        }
+      });
     });
-  });
-}
+  }
 }
 
 displayGuildMissionName();
@@ -89,7 +90,7 @@ quiz_ref.once("value", function(snapshot) {
   snapshot.forEach(function(childsnapshot) {
     if (childsnapshot.key == subject_key) {
       childsnapshot.forEach(function(childe) {
-        if (childe.key == act_id) {
+        if (childe.key == ActivityId) {
           let topics = document.createElement("input");
           childe.child("SubTopics").forEach(function(childes) {
             sub_parent.innerHTML += childes.key + "  ";
@@ -108,7 +109,7 @@ lab_ref.once("value", function(snapshot) {
   snapshot.forEach(function(childsnapshot) {
     if (childsnapshot.key == subject_key) {
       childsnapshot.forEach(function(childe) {
-        if (childe.key == act_id) {
+        if (childe.key == ActivityId) {
           let topics = document.createElement("input");
           childe.child("SubTopics").forEach(function(childes) {
             sub_parent.innerHTML += childes.key + "  ";
@@ -127,7 +128,7 @@ exam_ref.once("value", function(snapshot) {
   snapshot.forEach(function(childsnapshot) {
     if (childsnapshot.key == subject_key) {
       childsnapshot.forEach(function(childe) {
-        if (childe.key == act_id) {
+        if (childe.key == ActivityId) {
           let topics = document.createElement("input");
           childe.child("SubTopics").forEach(function(childes) {
             sub_parent.innerHTML += childes.child("title").val() + "  ";
@@ -169,7 +170,7 @@ function submit() {
           snapshot.forEach(function(childsnapshot) {
             if (childsnapshot.key == subject_key) {
               childsnapshot.forEach(function(childe) {
-                if (childe.key == act_id) {
+                if (childe.key == ActivityId) {
                   childe.child("SubTopics").forEach(function(c) {
                     if (sub_id == c.key) {
                       scores_ref.once("value", function(snapshot) {
@@ -179,7 +180,7 @@ function submit() {
                               scores_ref
                                 .child(participant)
                                 .child("Quizzes")
-                                .child(act_id)
+                                .child(ActivityId)
                                 .child("Subtopics")
                                 .child(sub_id)
                                 .update({
@@ -206,7 +207,7 @@ function submit() {
           snapshot.forEach(function(childsnapshot) {
             if (childsnapshot.key == subject_key) {
               childsnapshot.forEach(function(childe) {
-                if (childe.key == act_id) {
+                if (childe.key == ActivityId) {
                   childe.child("SubTopics").forEach(function(c) {
                     if (sub_id == c.key) {
                       scores_ref.once("value", function(snapshot) {
@@ -216,7 +217,7 @@ function submit() {
                               scores_ref
                                 .child(participant)
                                 .child("Labs")
-                                .child(act_id)
+                                .child(ActivityId)
                                 .child("Subtopics")
                                 .child(sub_id)
                                 .update({
@@ -243,7 +244,7 @@ function submit() {
           snapshot.forEach(function(childsnapshot) {
             if (childsnapshot.key == subject_key) {
               childsnapshot.forEach(function(childe) {
-                if (childe.key == act_id) {
+                if (childe.key == ActivityId) {
                   childe.child("SubTopics").forEach(function(c) {
                     if (sub_id == c.key) {
                       scores_ref.once("value", function(snapshot) {
@@ -253,7 +254,7 @@ function submit() {
                               scores_ref
                                 .child(participant)
                                 .child("Exams")
-                                .child(act_id)
+                                .child(ActivityId)
                                 .child("Subtopics")
                                 .child(sub_id)
                                 .update({
