@@ -1,8 +1,8 @@
 // document.getElementById("access-key").style.display = "none";
 let start = location.href.lastIndexOf("/");
-let guild_course = location.href.substr(start + 1).replace(/[%]/g, " ");
-let guild_key = guild_course.replace(/\s+/g, "").toLowerCase() + "id";;
-document.getElementById("course-code").innerHTML = "Guild Mission<br> " + guild_course;
+let courseNumber = location.href.substr(start + 1).replace(/[%]/g, " ");
+let guild_key = courseNumber.replace(/\s+/g, "").toLowerCase() + "id";;
+document.getElementById("course-number").innerHTML = "Guild Mission<br> " + courseNumber;
 
 function logOut() {
     firebase.auth().signOut();
