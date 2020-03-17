@@ -17,6 +17,7 @@ function logOut() {
 }
 
 //display guild mission name
+function displayGuildMissionName(){
 if (mission_type == "lab") {
   lab_ref.child(subject_key).once("value", function(snapshot) {
     snapshot.forEach(function(childe) {
@@ -45,6 +46,10 @@ if (mission_type == "lab") {
     });
   });
 }
+}
+
+displayGuildMissionName();
+
 enrolled_ref.once("value", function(snapshot) {
   snapshot.forEach(function(childsnapshot) {
     childsnapshot.forEach(function(childe) {

@@ -239,7 +239,7 @@ function expand() {
 function addActivity() {
   //must assum that quiz id is randomized
   let act = document.getElementById("activity_type");
-  let gtype = act.options[act.selectedIndex].value;
+  let guildMissionType = act.options[act.selectedIndex].value;
   let date = document.getElementById("date").value;
   let name = document.getElementById("qtitle").value;
   //THIS NEEDS TO BE CHANGED INTO RANDOM
@@ -248,7 +248,7 @@ function addActivity() {
 
   if (name !== "" && subs_list.length > 0) {
     // alert(JSON.stringify(subs_list).toString())
-    if (gtype == "quiz") {
+    if (guildMissionType == "quiz") {
       alert("quiz");
       quiz_ref
         .child(guild_key)
@@ -271,7 +271,7 @@ function addActivity() {
             xp: subs_list[i].xp
           });
       }
-    } else if (gtype == "lab-activity") {
+    } else if (guildMissionType == "lab-activity") {
       lab_ref
         .child(guild_key)
         .child(act_key)
